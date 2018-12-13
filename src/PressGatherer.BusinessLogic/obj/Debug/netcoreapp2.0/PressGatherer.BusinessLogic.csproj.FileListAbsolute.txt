@@ -1,0 +1,17 @@
+C:\Users\sceur\source\repos\PressGatherer\src\PressGatherer.BusinessLogic\bin\Debug\netcoreapp2.0\PressGatherer.BusinessLogic.deps.json
+C:\Users\sceur\source\repos\PressGatherer\src\PressGatherer.BusinessLogic\bin\Debug\netcoreapp2.0\PressGatherer.BusinessLogic.dll
+C:\Users\sceur\source\repos\PressGatherer\src\PressGatherer.BusinessLogic\bin\Debug\netcoreapp2.0\PressGatherer.BusinessLogic.pdb
+C:\Users\sceur\source\repos\PressGatherer\src\PressGatherer.BusinessLogic\obj\Debug\netcoreapp2.0\PressGatherer.BusinessLogic.csproj.CoreCompileInputs.cache
+C:\Users\sceur\source\repos\PressGatherer\src\PressGatherer.BusinessLogic\obj\Debug\netcoreapp2.0\PressGatherer.BusinessLogic.AssemblyInfoInputs.cache
+C:\Users\sceur\source\repos\PressGatherer\src\PressGatherer.BusinessLogic\obj\Debug\netcoreapp2.0\PressGatherer.BusinessLogic.AssemblyInfo.cs
+C:\Users\sceur\source\repos\PressGatherer\src\PressGatherer.BusinessLogic\obj\Debug\netcoreapp2.0\PressGatherer.BusinessLogic.dll
+C:\Users\sceur\source\repos\PressGatherer\src\PressGatherer.BusinessLogic\obj\Debug\netcoreapp2.0\PressGatherer.BusinessLogic.pdb
+D:\PrGr\src\PressGatherer.BusinessLogic\bin\Debug\netcoreapp2.0\PressGatherer.BusinessLogic.deps.json
+D:\PrGr\src\PressGatherer.BusinessLogic\bin\Debug\netcoreapp2.0\PressGatherer.BusinessLogic.dll
+D:\PrGr\src\PressGatherer.BusinessLogic\bin\Debug\netcoreapp2.0\PressGatherer.BusinessLogic.pdb
+D:\PrGr\src\PressGatherer.BusinessLogic\obj\Debug\netcoreapp2.0\PressGatherer.BusinessLogic.csprojAssemblyReference.cache
+D:\PrGr\src\PressGatherer.BusinessLogic\obj\Debug\netcoreapp2.0\PressGatherer.BusinessLogic.csproj.CoreCompileInputs.cache
+D:\PrGr\src\PressGatherer.BusinessLogic\obj\Debug\netcoreapp2.0\PressGatherer.BusinessLogic.AssemblyInfoInputs.cache
+D:\PrGr\src\PressGatherer.BusinessLogic\obj\Debug\netcoreapp2.0\PressGatherer.BusinessLogic.AssemblyInfo.cs
+D:\PrGr\src\PressGatherer.BusinessLogic\obj\Debug\netcoreapp2.0\PressGatherer.BusinessLogic.dll
+D:\PrGr\src\PressGatherer.BusinessLogic\obj\Debug\netcoreapp2.0\PressGatherer.BusinessLogic.pdb
