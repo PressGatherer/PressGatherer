@@ -1,9 +1,9 @@
 ﻿using System;
 
-namespace PressGatherer.BusinessLogic.Enums
+namespace PressGatherer.References.Enums
 {
     public enum UserTypeEnum
     {
-        Basic = 0
+        Basic = 0,
     }
 }

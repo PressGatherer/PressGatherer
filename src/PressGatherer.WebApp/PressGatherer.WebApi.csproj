@@ -13,4 +13,9 @@
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PressGatherer.BusinessLogic\PressGatherer.BusinessLogic.csproj" />
+    <ProjectReference Include="..\PressGatherer.References\PressGatherer.References.csproj" />
+  </ItemGroup>
+
 </Project>

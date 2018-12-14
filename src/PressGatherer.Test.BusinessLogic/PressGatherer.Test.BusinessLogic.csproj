@@ -12,4 +12,10 @@
     <PackageReference Include="MSTest.TestFramework" Version="1.3.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PressGatherer.BusinessLogic\PressGatherer.BusinessLogic.csproj" />
+    <ProjectReference Include="..\PressGatherer.DataAccess\PressGatherer.DataAccess.csproj" />
+    <ProjectReference Include="..\PressGatherer.References\PressGatherer.References.csproj" />
+  </ItemGroup>
+
 </Project>

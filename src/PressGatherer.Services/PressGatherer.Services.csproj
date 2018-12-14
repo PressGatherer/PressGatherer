@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PressGatherer.BusinessLogic\PressGatherer.BusinessLogic.csproj" />
+    <ProjectReference Include="..\PressGatherer.References\PressGatherer.References.csproj" />
+  </ItemGroup>
+
 </Project>
