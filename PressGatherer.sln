@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Product", "Product", "{B09F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{FE727527-8D4B-4978-ABC4-37A8ECF29061}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PressGatherer.WebApp", "src\PressGatherer.WebApp\PressGatherer.WebApp.csproj", "{94683FF1-BC3E-4673-B24D-CFAA31DCD639}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PressGatherer.WebApi", "src\PressGatherer.WebApp\PressGatherer.WebApi.csproj", "{94683FF1-BC3E-4673-B24D-CFAA31DCD639}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PressGatherer.BusinessLogic", "src\PressGatherer.BusinessLogic\PressGatherer.BusinessLogic.csproj", "{D3E9555F-5C13-460E-8B5F-D2A96A3493A8}"
 EndProject
