@@ -1,0 +1,11 @@
+D:\PrGr\src\PressGatherer.Web\bin\Debug\netcoreapp2.0\PressGatherer.Web.deps.json
+D:\PrGr\src\PressGatherer.Web\bin\Debug\netcoreapp2.0\PressGatherer.Web.runtimeconfig.json
+D:\PrGr\src\PressGatherer.Web\bin\Debug\netcoreapp2.0\PressGatherer.Web.runtimeconfig.dev.json
+D:\PrGr\src\PressGatherer.Web\bin\Debug\netcoreapp2.0\PressGatherer.Web.dll
+D:\PrGr\src\PressGatherer.Web\bin\Debug\netcoreapp2.0\PressGatherer.Web.pdb
+D:\PrGr\src\PressGatherer.Web\obj\Debug\netcoreapp2.0\PressGatherer.Web.csprojAssemblyReference.cache
+D:\PrGr\src\PressGatherer.Web\obj\Debug\netcoreapp2.0\PressGatherer.Web.csproj.CoreCompileInputs.cache
+D:\PrGr\src\PressGatherer.Web\obj\Debug\netcoreapp2.0\PressGatherer.Web.AssemblyInfoInputs.cache
+D:\PrGr\src\PressGatherer.Web\obj\Debug\netcoreapp2.0\PressGatherer.Web.AssemblyInfo.cs
+D:\PrGr\src\PressGatherer.Web\obj\Debug\netcoreapp2.0\PressGatherer.Web.dll
+D:\PrGr\src\PressGatherer.Web\obj\Debug\netcoreapp2.0\PressGatherer.Web.pdb
