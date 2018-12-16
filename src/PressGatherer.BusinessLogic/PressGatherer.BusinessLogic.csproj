@@ -5,10 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="TransportModels\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\PressGatherer.DataAccess\PressGatherer.DataAccess.csproj" />
     <ProjectReference Include="..\PressGatherer.References\PressGatherer.References.csproj" />
   </ItemGroup>
