@@ -16,8 +16,14 @@ namespace PressGatherer.DataAccess
         [BsonElement("name")]
         public string Name { get; set; }
 
+        [BsonElement("email")]
+        public string Email { get; set; }
+
         [BsonElement("type")]
         public UserTypeEnum Type { get; set; }
+
+        [BsonElement("validation")]
+        public ValidationElement Validation { get; set; }
 
         [BsonElement("createdDate")]
         public DateTime CreatedDate { get; set; }
