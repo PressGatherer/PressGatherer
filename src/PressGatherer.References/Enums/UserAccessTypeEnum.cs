@@ -2,9 +2,9 @@
 
 namespace PressGatherer.References.Enums
 {
-    public enum UserTypeEnum
+    public enum UserAccessTypeEnum
     {
-        Basic = 0,
-        SiteAdmin = 999,
+        Admin = 0,
+        View = 1,
     }
 }

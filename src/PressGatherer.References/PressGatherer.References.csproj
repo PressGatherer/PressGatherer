@@ -4,4 +4,11 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="TransportModels\ArticleModules\ResponseModels\" />
+    <Folder Include="TransportModels\ArticleModules\RequestModels\" />
+    <Folder Include="TransportModels\SearchModules\ResponseModels\" />
+    <Folder Include="TransportModels\SearchModules\RequestModels\" />
+  </ItemGroup>
+
 </Project>

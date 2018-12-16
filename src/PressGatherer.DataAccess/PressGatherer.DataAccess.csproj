@@ -12,4 +12,9 @@
     <ProjectReference Include="..\PressGatherer.References\PressGatherer.References.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DataAccessLayer\SearchModules\" />
+    <Folder Include="DataAccessLayer\ArticleModules\" />
+  </ItemGroup>
+
 </Project>

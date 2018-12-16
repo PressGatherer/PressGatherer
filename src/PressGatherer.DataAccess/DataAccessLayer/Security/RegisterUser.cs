@@ -43,11 +43,10 @@ namespace PressGatherer.DataAccess.DataAccessLayer
                         ValidationToken = validationtoken
                     }
                 };
-                user.Login = new LoginElement();
-                user.Validation = new ValidationElement();
-
 
                 DbContext db = new DbContext();
+
+                await db.Users.InsertOneAsync(user);
 
                 RegisterTransportResponseModel response = new RegisterTransportResponseModel(user.Id.ToString());
                 return response;
