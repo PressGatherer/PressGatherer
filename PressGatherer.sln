@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PressGatherer.Test.Business
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PressGatherer.References", "src\PressGatherer.References\PressGatherer.References.csproj", "{0FEE8CC0-1F2B-46D0-AE72-96A4EBFB9ECD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PressGatherer.Web", "src\PressGatherer.Web\PressGatherer.Web.csproj", "{5B485161-03E2-45F5-A98F-F0E97CFEBEEC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{0FEE8CC0-1F2B-46D0-AE72-96A4EBFB9ECD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FEE8CC0-1F2B-46D0-AE72-96A4EBFB9ECD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FEE8CC0-1F2B-46D0-AE72-96A4EBFB9ECD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B485161-03E2-45F5-A98F-F0E97CFEBEEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B485161-03E2-45F5-A98F-F0E97CFEBEEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B485161-03E2-45F5-A98F-F0E97CFEBEEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B485161-03E2-45F5-A98F-F0E97CFEBEEC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,6 +80,7 @@ Global
 		{0AF114AA-96A1-4B75-BCC4-9D2322039CB9} = {FE727527-8D4B-4978-ABC4-37A8ECF29061}
 		{2AEF5894-B778-44A0-8264-34608AE4F049} = {FE727527-8D4B-4978-ABC4-37A8ECF29061}
 		{0FEE8CC0-1F2B-46D0-AE72-96A4EBFB9ECD} = {B09FF7B8-549E-40B6-A6DB-F997359E8C85}
+		{5B485161-03E2-45F5-A98F-F0E97CFEBEEC} = {B09FF7B8-549E-40B6-A6DB-F997359E8C85}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {13D14A9C-1B4B-41C0-A0BD-82B5C5CA7878}
