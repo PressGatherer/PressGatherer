@@ -25,13 +25,13 @@ namespace PressGatherer.WebApi.Modules.Implementations
             if (string.IsNullOrWhiteSpace(credentials.HashedPassword) ||
                 string.IsNullOrWhiteSpace(credentials.HashedPassword))
             {
-                throw new AuthenticationException();
+                throw new AuthenticationException("Invalid credentials.");
             }
             var loginResponse = await _apiServiceClient.Login(credentials);
 
             if (string.IsNullOrWhiteSpace(loginResponse.AuthenticationToken))
             {
-                throw new AuthenticationException();
+                throw new AuthenticationException("Invalid credentials.");
             }
 
             return JsonConvert.SerializeObject(loginResponse);
