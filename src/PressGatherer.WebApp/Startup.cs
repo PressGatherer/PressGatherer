@@ -11,6 +11,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using PressGatherer.WebApi.Middlewares;
+using PressGatherer.WebApi.Modules.Implementations;
+using PressGatherer.WebApi.Modules.Interfaces;
+using PressGatherer.WebApi.ServiceClients.Implementations;
+using PressGatherer.WebApi.ServiceClients.Interfaces;
 
 namespace PressGatherer.WebApp
 {
@@ -27,6 +31,8 @@ namespace PressGatherer.WebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddTransient<IApiModule, ApiModule>();
+            services.AddTransient<IApiServiceClient, ApiServiceClient>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
