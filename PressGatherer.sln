@@ -9,21 +9,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{FE727527-8
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PressGatherer.WebApi", "src\PressGatherer.WebApp\PressGatherer.WebApi.csproj", "{94683FF1-BC3E-4673-B24D-CFAA31DCD639}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PressGatherer.BusinessLogic", "src\PressGatherer.BusinessLogic\PressGatherer.BusinessLogic.csproj", "{D3E9555F-5C13-460E-8B5F-D2A96A3493A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PressGatherer.BusinessLogic", "src\PressGatherer.BusinessLogic\PressGatherer.BusinessLogic.csproj", "{D3E9555F-5C13-460E-8B5F-D2A96A3493A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PressGatherer.DataAccess", "src\PressGatherer.DataAccess\PressGatherer.DataAccess.csproj", "{864495C9-FBE6-4692-9FC2-9FDCB9B7E57F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PressGatherer.DataAccess", "src\PressGatherer.DataAccess\PressGatherer.DataAccess.csproj", "{864495C9-FBE6-4692-9FC2-9FDCB9B7E57F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PressGatherer.Services", "src\PressGatherer.Services\PressGatherer.Services.csproj", "{C4E5117D-1E64-4FA8-89C5-DC6A31DE5767}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PressGatherer.Services", "src\PressGatherer.Services\PressGatherer.Services.csproj", "{C4E5117D-1E64-4FA8-89C5-DC6A31DE5767}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PressGatherer.Test.Services", "src\PressGatherer.Test.Services\PressGatherer.Test.Services.csproj", "{E0748748-6C5E-4AA3-A2DF-C1312E5EAD3C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PressGatherer.Test.Services", "src\PressGatherer.Test.Services\PressGatherer.Test.Services.csproj", "{E0748748-6C5E-4AA3-A2DF-C1312E5EAD3C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PressGatherer.Test.DataAccess", "src\PressGatherer.Test.DataAccess\PressGatherer.Test.DataAccess.csproj", "{0AF114AA-96A1-4B75-BCC4-9D2322039CB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PressGatherer.Test.DataAccess", "src\PressGatherer.Test.DataAccess\PressGatherer.Test.DataAccess.csproj", "{0AF114AA-96A1-4B75-BCC4-9D2322039CB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PressGatherer.Test.BusinessLogic", "src\PressGatherer.Test.BusinessLogic\PressGatherer.Test.BusinessLogic.csproj", "{2AEF5894-B778-44A0-8264-34608AE4F049}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PressGatherer.Test.BusinessLogic", "src\PressGatherer.Test.BusinessLogic\PressGatherer.Test.BusinessLogic.csproj", "{2AEF5894-B778-44A0-8264-34608AE4F049}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PressGatherer.Web", "src\PressGatherer.Web\PressGatherer.Web.csproj", "{78FDF2A8-81EF-410B-96F7-D5DB88D21FDD}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PressGatherer.References", "src\PressGatherer.References\PressGatherer.References.csproj", "{0FEE8CC0-1F2B-46D0-AE72-96A4EBFB9ECD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PressGatherer.References", "src\PressGatherer.References\PressGatherer.References.csproj", "{0FEE8CC0-1F2B-46D0-AE72-96A4EBFB9ECD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,10 +57,6 @@ Global
 		{2AEF5894-B778-44A0-8264-34608AE4F049}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2AEF5894-B778-44A0-8264-34608AE4F049}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2AEF5894-B778-44A0-8264-34608AE4F049}.Release|Any CPU.Build.0 = Release|Any CPU
-		{78FDF2A8-81EF-410B-96F7-D5DB88D21FDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{78FDF2A8-81EF-410B-96F7-D5DB88D21FDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{78FDF2A8-81EF-410B-96F7-D5DB88D21FDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{78FDF2A8-81EF-410B-96F7-D5DB88D21FDD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0FEE8CC0-1F2B-46D0-AE72-96A4EBFB9ECD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0FEE8CC0-1F2B-46D0-AE72-96A4EBFB9ECD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FEE8CC0-1F2B-46D0-AE72-96A4EBFB9ECD}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -79,7 +73,6 @@ Global
 		{E0748748-6C5E-4AA3-A2DF-C1312E5EAD3C} = {FE727527-8D4B-4978-ABC4-37A8ECF29061}
 		{0AF114AA-96A1-4B75-BCC4-9D2322039CB9} = {FE727527-8D4B-4978-ABC4-37A8ECF29061}
 		{2AEF5894-B778-44A0-8264-34608AE4F049} = {FE727527-8D4B-4978-ABC4-37A8ECF29061}
-		{78FDF2A8-81EF-410B-96F7-D5DB88D21FDD} = {B09FF7B8-549E-40B6-A6DB-F997359E8C85}
 		{0FEE8CC0-1F2B-46D0-AE72-96A4EBFB9ECD} = {B09FF7B8-549E-40B6-A6DB-F997359E8C85}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
