@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace PressGatherer.WebApp.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("builtinApi/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase
     {
