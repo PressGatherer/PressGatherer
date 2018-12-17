@@ -16,20 +16,18 @@ namespace PressGatherer.WebApi.Controllers
     [ApiController]
     public class ApiController : ControllerBase
     {
-        private readonly IApiModule _pressGathererModule;
+        private readonly IApiModule _apiModule;
 
-        //public ApiController(IApiModule pressGathererModule)
-        public ApiController()
+        public ApiController(IApiModule pressGathererModule)
         {
-            //_pressGathererModule = pressGathererModule;
-            _pressGathererModule = new ApiModule(new ApiServiceClient());
+            _apiModule = pressGathererModule;
         }
 
         [HttpPost("login")]
         [AllowAnonymous]
         public async Task<string> Login([FromBody]LoginTransportRequestModel credentials)
         {
-            return await _pressGathererModule.Login(credentials);
+            return await _apiModule.Login(credentials);
         }
     }
 }
