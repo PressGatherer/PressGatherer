@@ -17,4 +17,10 @@
     <ProjectReference Include="..\PressGatherer.References\PressGatherer.References.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="LogicalTests\" />
+    <Folder Include="UnitTests\ArticleModules\" />
+    <Folder Include="UnitTests\SearchModules\" />
+  </ItemGroup>
+
 </Project>
