@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using PressGatherer.DataAccess.DataAccessLayer;
 using PressGatherer.References.TransportModels.SearchModules;
 
-namespace PressGatherer.BusinessLogic.ArticleModules
+namespace PressGatherer.BusinessLogic.SearchModules
 {
-    public partial class ArticleDriver
+    public partial class SearchDriver
     {
         public static async Task<CreateSearchGroupTransportResponseModel> CreateSearchGroup(CreateSearchGroupTransportRequestModel request)
         {
