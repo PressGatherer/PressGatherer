@@ -10,12 +10,12 @@ namespace PressGatherer.References.TransportModels.ArticleModules
         public string Title { get; set; }
         public string Description { get; set; }
         public string Link { get; set; }
-        public IEnumerable<ArticlePicture> Pictures { get; set; }
+        public List<ArticlePictureTransportModel> Pictures { get; set; }
         public string Content { get; set; }
         public string Culture { get; set; }
-        public ArticlePage Page { get; set; }
-        public IEnumerable<ArticleConnection> ArticleConnections { get; set; }
-        public IEnumerable<ArticleRating> ArticleRatings { get; set; }
+        public ArticlePageTransportModel Page { get; set; }
+        public IEnumerable<ArticleConnectionTransportModel> ArticleConnections { get; set; }
+        public IEnumerable<ArticleRatingTransportModel> ArticleRatings { get; set; }
 
         public CreateArticleTransportRequestModel()
         {

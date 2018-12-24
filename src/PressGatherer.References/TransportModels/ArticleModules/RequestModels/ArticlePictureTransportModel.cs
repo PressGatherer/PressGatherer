@@ -1,15 +1,15 @@
 ﻿namespace PressGatherer.References.TransportModels.ArticleModules
 {
-    public class ArticlePicture
+    public class ArticlePictureTransportModel
     {
         public string Link { get; set; }
 
-        public ArticlePicture()
+        public ArticlePictureTransportModel()
         {
             this.Link = "";
         }
 
-        public ArticlePicture(string link)
+        public ArticlePictureTransportModel(string link)
         {
             this.Link = link;
         }

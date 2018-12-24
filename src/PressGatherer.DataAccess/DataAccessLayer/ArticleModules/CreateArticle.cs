@@ -18,8 +18,11 @@ namespace PressGatherer.DataAccess.DataAccessLayer
             {                
                 DbContext db = new DbContext();
 
+
+
                 Article article = new Article
                 {
+
                     Title = model.Title,
                     Description = model.Description,
                     Link = model.Link,
