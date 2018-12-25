@@ -21,6 +21,8 @@ namespace PressGatherer.DataAccess.DataAccessLayer
                 {
                     new SearchGroupAccess
                     {
+                        UserId = model.UserId,
+                        UserName = model.UserName,
                         AccessType = UserAccessTypeEnum.Admin
                     }
                 };
