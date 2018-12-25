@@ -17,31 +17,21 @@ namespace PressGatherer.DataAccess.DataAccessLayer
             {
                 DbContext db = new DbContext();
 
-                List<SearchGroupAccess> groupAccesseList = new List<SearchGroupAccess>
+                List<SearchGroupAccess> searchGroupAccessesList = new List<SearchGroupAccess>
                 {
                     new SearchGroupAccess
                     {
-                        AccessType = UserAccessTypeEnum.Admin,
-                        UserId = model.UserId,
-                        UserName = model.UserName
-                    }
-                };
-
-                List<SearchWord> searchWordList = new List<SearchWord>
-                {
-                    new SearchWord
-                    {
-                        Word = model.Word,
-                        Order = model.Order,
+                        AccessType = UserAccessTypeEnum.Admin
                     }
                 };
 
                 SearchGroup group = new SearchGroup
                 {
                     CreatedDate = DateTime.UtcNow,
-                    SearchWords = searchWordList,
-                    Users = groupAccesseList,
-                    LastChangedDate = DateTime.UtcNow,
+                    GroupName = model.GroupName,
+                    SearchWords = new List<SearchWord>(),
+                    Users = searchGroupAccessesList,
+                    Accessibility = SearchGroupAccessibilityEnum.Private
                 };
 
                 await db.SearchGroups.InsertOneAsync(group);
