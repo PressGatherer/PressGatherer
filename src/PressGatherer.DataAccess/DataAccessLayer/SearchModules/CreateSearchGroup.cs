@@ -22,7 +22,6 @@ namespace PressGatherer.DataAccess.DataAccessLayer
                     new SearchGroupAccess
                     {
                         UserId = model.UserId,
-                        UserName = model.UserName,
                         AccessType = UserAccessTypeEnum.Admin
                     }
                 };
@@ -33,7 +32,13 @@ namespace PressGatherer.DataAccess.DataAccessLayer
                     GroupName = model.GroupName,
                     SearchWords = new List<SearchWord>(),
                     Users = searchGroupAccessesList,
-                    Accessibility = SearchGroupAccessibilityEnum.Private
+                    Accessibility = SearchGroupAccessibilityEnum.Private,
+                    RefreshStatus = new RefreshStatus
+                    {
+                        Rate = RefreshRateEnum.EveryDay,
+                        LastRefreshed = DateTime.UtcNow
+                    },
+                    LastChangedDate = DateTime.UtcNow,
                 };
 
                 await db.SearchGroups.InsertOneAsync(group);
