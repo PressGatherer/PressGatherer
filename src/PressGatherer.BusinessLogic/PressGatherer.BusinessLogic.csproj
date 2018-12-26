@@ -9,8 +9,4 @@
     <ProjectReference Include="..\PressGatherer.References\PressGatherer.References.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Logic\SearchModules\" />
-  </ItemGroup>
-
 </Project>

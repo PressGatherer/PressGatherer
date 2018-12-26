@@ -336,3 +336,8 @@ ASALocalRun/
 
 # Local History for Visual Studio
 .localhistory/
+/src/.vscode
+/src/PressGatherer.BusinessLogic/Logic/SearchModules/AddSearchWordToSearchGroup.cs
+/src/PressGatherer.DataAccess/DataAccessLayer/SearchModules/AddSearchWordToSearchGroup.cs
+/src/PressGatherer.References/TransportModels/SearchModules/RequestModels/AddSearchWordToSearchGroupTransportRequestModel.cs
+/src/PressGatherer.References/TransportModels/SearchModules/ResponseModels/AddSearchWordToSearchGroupTransportResponseModel.cs
