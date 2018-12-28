@@ -15,7 +15,7 @@ namespace PressGatherer.DataAccess.DataAccessLayer
             {
                 DbContext db = new DbContext();
 
-                string Id = "";
+                string Id = model.SearchGroupId;
 
                 var findSearchGroup = await db.SearchGroups.Find(x => x.Id == new ObjectId(Id)).ToListAsync();
 

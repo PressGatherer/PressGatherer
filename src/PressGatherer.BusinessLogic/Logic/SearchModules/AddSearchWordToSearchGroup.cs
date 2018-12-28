@@ -12,9 +12,9 @@ namespace PressGatherer.BusinessLogic.SearchModules
 
             if (IsAddWordSuccessful)
             {
-                return new AddSearchWordToSearchGroupTransportResponseModel(IsAddWordSuccessful);
+                return new AddSearchWordToSearchGroupTransportResponseModel(true);
             }
-            return new AddSearchWordToSearchGroupTransportResponseModel(IsAddWordSuccessful);
+            return new AddSearchWordToSearchGroupTransportResponseModel(false);
         }
     }
 }
