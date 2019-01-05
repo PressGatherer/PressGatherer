@@ -1,6 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PressGatherer.DataAccess.DataAccessLayer;
 using PressGatherer.References.TransportModels.Security;
+using PressGatherer.References.Exceptions;
 
 namespace PressGatherer.Test.DataAccess
 {
@@ -18,11 +19,19 @@ namespace PressGatherer.Test.DataAccess
         [TestMethod]
         public void RegisterUser_Failed_Duplicate()
         {
-            var model = new RegisterTransportRequestModel("UserName", "Password", "username@username.com", "Full Username");
-            var result = PGAccess.RegisterUser(model);
-            model = new RegisterTransportRequestModel("UserName", "Password", "username@username.com", "Full Username");
-            result = PGAccess.RegisterUser(model);
-            Assert.AreEqual("", result.Result.UserId);
+            try
+            {
+                var model = new RegisterTransportRequestModel("UserName", "Password", "username@username.com", "Full Username");
+                var result = PGAccess.RegisterUser(model);
+                model = new RegisterTransportRequestModel("UserName", "Password", "username@username.com", "Full Username");
+                result = PGAccess.RegisterUser(model);
+                Assert.Fail();
+            }
+            catch (DuplicateUserException) { }
+            catch
+            {
+                Assert.Fail();
+            }
         }
 
         [TestMethod]
