@@ -9,8 +9,4 @@ http://schemas.microsoft.com/developer/msbuild/2003
     <ProjectReference Include="..\PressGatherer.References\PressGatherer.References.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Logic\SearchModules\" />
-  </ItemGroup>
-
 </Project>
