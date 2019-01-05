@@ -1,8 +1,8 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PressGatherer.DataAccess.DataAccessLayer;
+using PressGatherer.BusinessLogic.Security;
 using PressGatherer.References.TransportModels.Security;
 
-namespace PressGatherer.Test.DataAccess
+namespace PressGatherer.Test.BusinessLogic
 {
     [TestClass]
     public class RegisterUser
@@ -11,7 +11,7 @@ namespace PressGatherer.Test.DataAccess
         public void RegisterUser_Successful()
         {
             var model = new RegisterTransportRequestModel("UserName", "Password", "username@username.com", "Full Username");
-            var result = PGAccess.RegisterUser(model);
+            var result = SecurityDriver.RegisterUser(model);   
             Assert.AreNotEqual("", result.Result.UserId);
         }
 
@@ -19,9 +19,9 @@ namespace PressGatherer.Test.DataAccess
         public void RegisterUser_Failed_Duplicate()
         {
             var model = new RegisterTransportRequestModel("UserName", "Password", "username@username.com", "Full Username");
-            var result = PGAccess.RegisterUser(model);
+            var result = SecurityDriver.RegisterUser(model);
             model = new RegisterTransportRequestModel("UserName", "Password", "username@username.com", "Full Username");
-            result = PGAccess.RegisterUser(model);
+            result = SecurityDriver.RegisterUser(model);
             Assert.AreEqual("", result.Result.UserId);
         }
 
@@ -29,7 +29,7 @@ namespace PressGatherer.Test.DataAccess
         public void RegisterUser_Failed_MissingName()
         {
             var model = new RegisterTransportRequestModel("", "Password", "username@username.com", "Full Username");
-            var result = PGAccess.RegisterUser(model);
+            var result = SecurityDriver.RegisterUser(model);
             Assert.AreEqual("", result.Result.UserId);
         }
 
@@ -37,7 +37,7 @@ namespace PressGatherer.Test.DataAccess
         public void RegisterUser_Failed_MissingPassword()
         {
             var model = new RegisterTransportRequestModel("UserName", "", "username@username.com", "Full Username");
-            var result = PGAccess.RegisterUser(model);
+            var result = SecurityDriver.RegisterUser(model);
             Assert.AreEqual("", result.Result.UserId);
         }
 
@@ -45,7 +45,7 @@ namespace PressGatherer.Test.DataAccess
         public void RegisterUser_Failed_MissingEmail()
         {
             var model = new RegisterTransportRequestModel("UserName", "Password", "", "Full Username");
-            var result = PGAccess.RegisterUser(model);
+            var result = SecurityDriver.RegisterUser(model);
             Assert.AreEqual("", result.Result.UserId);
         }
     }
