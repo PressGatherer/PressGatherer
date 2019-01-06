@@ -16,14 +16,12 @@ namespace PressGatherer.DataAccess.DataAccessLayer
 
                 var group = await db.SearchGroups.Find(x => x.GroupName == model.GroupName).SingleAsync();
 
-                if (group.Users.Any(x => x.UserId == model.UserId))
+                if (group.Users.Where(x => x.UserId == model.UserId).Count() == 1)
                 {
                     group.Users
                         .Where(x => x.UserId == model.UserId)
                         .Single()
                         .AccessType = model.UserAccessType;
-
-                    group.LastChangedDate = DateTime.UtcNow;
 
                     await db.SearchGroups.ReplaceOneAsync(x => x.GroupName == model.GroupName, group);
                 }
