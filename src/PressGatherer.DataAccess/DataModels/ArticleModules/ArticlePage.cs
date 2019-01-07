@@ -18,7 +18,7 @@ namespace PressGatherer.DataAccess
         [BsonElement("link")]
         public string BaseLink { get; set; }
 
-        ArticlePage(ArticlePageTransportModel model)
+        public ArticlePage(ArticlePageTransportModel model)
         {
             this.PageId = model.PageId;
             this.Title = model.Title;

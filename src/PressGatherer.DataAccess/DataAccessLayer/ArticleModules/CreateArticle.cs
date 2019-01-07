@@ -4,6 +4,7 @@ using PressGatherer.References.Enums;
 using PressGatherer.References.Logics;
 using PressGatherer.References.TransportModels.ArticleModules;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,12 +27,12 @@ namespace PressGatherer.DataAccess.DataAccessLayer
                     Title = model.Title,
                     Description = model.Description,
                     Link = model.Link,
-                    Pictures = model.Pictures,
+                    Pictures = new List<ArticlePicture>(),
                     Content = model.Content,
                     Culture = model.Culture,
-                    Page = model.Page,
-                    ArticleConnections = model.ArticleConnections,
-                    ArticleRatings = model.ArticleRatings,
+                    Page = new ArticlePage(model.Page),
+                    ArticleConnections = new List<ArticleConnection>(),
+                    ArticleRatings = new List<ArticleRating>(),
                     AddedDate = DateTime.UtcNow,
                 };
 
