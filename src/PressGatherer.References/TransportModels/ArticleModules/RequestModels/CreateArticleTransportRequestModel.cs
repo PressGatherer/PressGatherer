@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using PressGatherer;
 
 
 namespace PressGatherer.References.TransportModels.ArticleModules
@@ -30,17 +31,17 @@ namespace PressGatherer.References.TransportModels.ArticleModules
             this.ArticleRatings = null;
         }
 
-        public CreateArticleTransportRequestModel(string title, string description, string link, IEnumerable<ArticlePicture> pictures, string content, string culture, ArticlePage page, IEnumerable<ArticleConnection> articleConnections, IEnumerable<ArticleRating> articleRatings)
+        public CreateArticleTransportRequestModel(string title, string description, string link, string content, string culture)
         {
             this.Title = title;
             this.Description = description;
             this.Link = link;
-            this.Pictures = pictures;
+            this.Pictures = new List<ArticlePictureTransportModel>();
             this.Content = content;
             this.Culture = culture;
-            this.Page = page;
-            this.ArticleConnections = articleConnections;
-            this.ArticleRatings = articleRatings;
+            this.Page = new ArticlePageTransportModel();
+            this.ArticleConnections = new List<ArticleConnectionTransportModel>();
+            this.ArticleRatings = new List<ArticleRatingTransportModel>();
         }
     }
 }
