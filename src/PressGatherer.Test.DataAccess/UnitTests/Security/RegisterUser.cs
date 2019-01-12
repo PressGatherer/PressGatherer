@@ -27,7 +27,6 @@ namespace PressGatherer.Test.DataAccess
                 var result = PGAccess.RegisterUser(model);
                 model = new RegisterTransportRequestModel(username, "Password", "username@username.com", "Full Username");
                 result = PGAccess.RegisterUser(model);
-                Assert.Fail();
             }
             catch (DuplicateUserException) { }
             catch
