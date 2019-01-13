@@ -12,7 +12,7 @@ namespace PressGatherer.Test.BusinessLogic
     public class AddSearchWordToSearchGroup
     {
         [TestMethod]
-        public async void AddSearchWordToSearchGroup_Successful()
+        public async Task AddSearchWordToSearchGroup_Successful()
         {
             string searchGroupId = await GetSearchGroupId();
             var model = new AddSearchWordToSearchGroupTransportRequestModel(searchGroupId, "word",0);
@@ -21,7 +21,7 @@ namespace PressGatherer.Test.BusinessLogic
         }
 
         [TestMethod]
-        public async void AddSearchWordToSearchGroup_Failed_NoSearchGroup()
+        public async Task AddSearchWordToSearchGroup_Failed_NoSearchGroup()
         {
             try
             {
@@ -38,7 +38,7 @@ namespace PressGatherer.Test.BusinessLogic
         }
 
         [TestMethod]
-        public async void AddSearchWordToSearchGroup_Failed_NoWord()
+        public async Task AddSearchWordToSearchGroup_Failed_NoWord()
         {
             try
             {
@@ -55,7 +55,7 @@ namespace PressGatherer.Test.BusinessLogic
         }
 
         [TestMethod]
-        public async void AddSearchWordToSearchGroup_Failed_DuplicateWord()
+        public async Task AddSearchWordToSearchGroup_Failed_DuplicateWord()
         {
             try
             {

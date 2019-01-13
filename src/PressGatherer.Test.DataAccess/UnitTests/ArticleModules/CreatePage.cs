@@ -3,6 +3,7 @@ using PressGatherer.DataAccess.DataAccessLayer;
 using PressGatherer.References.Exceptions;
 using PressGatherer.References.TransportModels.ArticleModules;
 using System;
+using System.Threading.Tasks;
 
 namespace PressGatherer.Test.DataAccess
 {
@@ -10,7 +11,7 @@ namespace PressGatherer.Test.DataAccess
     public class CreatePage
     {
         [TestMethod]
-        public async void CreatePage_Successful()
+        public async Task CreatePage_Successful()
         {
             var model = new CreatePageTransportRequestModel("NewTestPage_" + DateTime.UtcNow.ToString(), "http://test.com", "http://test.com", "http://test.com");
             var result = await PGAccess.CreatePage(model);
@@ -18,7 +19,7 @@ namespace PressGatherer.Test.DataAccess
         }
 
         [TestMethod]
-        public async void CreatePage_Failed_EmptyName()
+        public async Task CreatePage_Failed_EmptyName()
         {
             try
             {

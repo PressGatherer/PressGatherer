@@ -4,6 +4,7 @@ using PressGatherer.DataAccess.DataAccessLayer;
 using PressGatherer.References.TransportModels.SearchModules;
 using PressGatherer.References.Exceptions;
 using System;
+using System.Threading.Tasks;
 
 namespace PressGatherer.Test.BusinessLogic
 {
@@ -11,7 +12,7 @@ namespace PressGatherer.Test.BusinessLogic
     public class CreateSearchGroup
     {
         [TestMethod]
-        public async void CreateSearchGroup_Successful()
+        public async Task CreateSearchGroup_Successful()
         {
             var userid = PGAccessForTest.GetFirstUserId();
             var model = new CreateSearchGroupTransportRequestModel("Test", userid.Result);
@@ -20,7 +21,7 @@ namespace PressGatherer.Test.BusinessLogic
         }
 
         [TestMethod]
-        public async void CreateSearchGroup_Failed_NoUser()
+        public async Task CreateSearchGroup_Failed_NoUser()
         {
             try
             {
@@ -36,7 +37,7 @@ namespace PressGatherer.Test.BusinessLogic
         }
 
         [TestMethod]
-        public async void CreateSearchGroup_Failed_NoTitle()
+        public async Task CreateSearchGroup_Failed_NoTitle()
         {
             try
             {

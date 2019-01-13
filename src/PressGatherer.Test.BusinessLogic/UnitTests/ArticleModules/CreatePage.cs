@@ -3,6 +3,7 @@ using PressGatherer.BusinessLogic.ArticleModules;
 using PressGatherer.References.TransportModels.ArticleModules;
 using PressGatherer.References.Exceptions;
 using System;
+using System.Threading.Tasks;
 
 namespace PressGatherer.Test.BusinessLogic
 {
@@ -10,7 +11,7 @@ namespace PressGatherer.Test.BusinessLogic
     public class CreatePage
     {
         [TestMethod]
-        public async void CreatePage_Successful()
+        public async Task CreatePage_Successful()
         {
             var model = new CreatePageTransportRequestModel("NewTestPage_" + DateTime.UtcNow.ToString() ,"http://test.com", "http://test.com", "http://test.com");
             var result = await ArticleDriver.CreatePage(model);   
@@ -18,7 +19,7 @@ namespace PressGatherer.Test.BusinessLogic
         }
 
         [TestMethod]
-        public async void CreatePage_Failed_EmptyName()
+        public async Task CreatePage_Failed_EmptyName()
         {
             try
             {
