@@ -3,9 +3,9 @@
 namespace PressGatherer.References.Exceptions
 {
     [Serializable]
-    public class DuplicateWordExcelption : Exception
+    public class MissingWordAtAddSearchWordToSearchGroup : Exception
     {
-        public DuplicateWordExcelption()
+        public MissingWordAtAddSearchWordToSearchGroup()
         {
 
         }

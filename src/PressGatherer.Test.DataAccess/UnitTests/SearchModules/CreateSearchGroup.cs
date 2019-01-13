@@ -13,8 +13,8 @@ namespace PressGatherer.Test.DataAccess
         [TestMethod]
         public async Task CreateSearchGroup_Successful()
         {
-            var userid = await PGAccessForTest.GetFirstUserId();
-            var model = new CreateSearchGroupTransportRequestModel("Test", userid);
+            var userId = await PGAccessForTest.GetFirstUserId();
+            var model = new CreateSearchGroupTransportRequestModel("Test", userId);
             var result = await PGAccess.CreateSearchGroup(model);
             Assert.AreNotEqual("", result.SearchGroupId);
         }
@@ -40,8 +40,8 @@ namespace PressGatherer.Test.DataAccess
         {
             try
             {
-                var userid = PGAccessForTest.GetFirstUserId();
-                var model = new CreateSearchGroupTransportRequestModel("", userid.Result);
+                var userId = await PGAccessForTest.GetFirstUserId();
+                var model = new CreateSearchGroupTransportRequestModel("", userId);
                 var result = await PGAccess.CreateSearchGroup(model);
                 Assert.Fail();
             }

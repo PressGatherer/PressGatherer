@@ -9,28 +9,30 @@ using System.Threading.Tasks;
 namespace PressGatherer.Test.BusinessLogic
 {
     [TestClass]
-    public class AddSearchWordToSearchGroup
+    public class AddUserToSearchGroup
     {
         [TestMethod]
-        public async Task AddSearchWordToSearchGroup_Successful()
+        public async Task AddUserToSearchGroup_Successful()
         {
             string searchGroupId = await GetSearchGroupId();
-            var model = new AddSearchWordToSearchGroupTransportRequestModel(searchGroupId, "word",0);
-            var result = await SearchDriver.AddSearchWordToSearchGroup(model);
-            Assert.IsTrue(result.IsSuccesful);
+            string userId = await PGAccessForTest.GetFirstUserId();
+            var model = new AddUserToSearchGroupTransportRequestModel(searchGroupId, userId);
+            var result = await SearchDriver.AddUserToSearchGroup(model);
+            Assert.IsTrue(result.Success);
         }
 
         [TestMethod]
-        public async Task AddSearchWordToSearchGroup_Failed_NoSearchGroup()
+        public async Task AddUserToSearchGroup_Failed_NoSearchGroup()
         {
             try
             {
                 string searchGroupId = "";
-                var model = new AddSearchWordToSearchGroupTransportRequestModel(searchGroupId, "word", 0);
-                var result = await SearchDriver.AddSearchWordToSearchGroup(model);
+                string userId = await PGAccessForTest.GetFirstUserId();
+                var model = new AddUserToSearchGroupTransportRequestModel(searchGroupId, userId);
+                var result = await SearchDriver.AddUserToSearchGroup(model);
                 Assert.Fail();
             }
-            catch (MissingSearchGroupAtAddSearchWordToSearchGroup) { }
+            catch (MissingSearchGroupAtAddUserToSearchGroup) { }
             catch
             {
                 Assert.Fail();
@@ -38,16 +40,17 @@ namespace PressGatherer.Test.BusinessLogic
         }
 
         [TestMethod]
-        public async Task AddSearchWordToSearchGroup_Failed_NoWord()
+        public async Task AddUserToSearchGroup_Failed_NoUser()
         {
             try
             {
                 string searchGroupId = await GetSearchGroupId();
-                var model = new AddSearchWordToSearchGroupTransportRequestModel(searchGroupId, "", 0);
-                var result = await SearchDriver.AddSearchWordToSearchGroup(model);
+                string userId = "";
+                var model = new AddUserToSearchGroupTransportRequestModel(searchGroupId, userId);
+                var result = await SearchDriver.AddUserToSearchGroup(model);
                 Assert.Fail();
             }
-            catch (MissingWordAtAddSearchWordToSearchGroup) { }
+            catch (MissingUserAtAddUserToSearchGroup) { }
             catch
             {
                 Assert.Fail();
@@ -55,17 +58,18 @@ namespace PressGatherer.Test.BusinessLogic
         }
 
         [TestMethod]
-        public async Task AddSearchWordToSearchGroup_Failed_DuplicateWord()
+        public async Task AddUserToSearchGroup_Failed_DuplicateUser()
         {
             try
             {
                 string searchGroupId = await GetSearchGroupId();
-                var model = new AddSearchWordToSearchGroupTransportRequestModel(searchGroupId, "word", 0);
-                var result = await SearchDriver.AddSearchWordToSearchGroup(model);
-                var resultAgain = await SearchDriver.AddSearchWordToSearchGroup(model);
+                string userId = await PGAccessForTest.GetFirstUserId();
+                var model = new AddUserToSearchGroupTransportRequestModel(searchGroupId, userId);
+                var result = await SearchDriver.AddUserToSearchGroup(model);
+                var resultAgain = await SearchDriver.AddUserToSearchGroup(model);
                 Assert.Fail();
             }
-            catch (DuplicateWordExceptionAtAddSearchWordToSearchGroup) { }
+            catch (DuplicateUserExceptionAtAddUserToSearchGroup) { }
             catch
             {
                 Assert.Fail();

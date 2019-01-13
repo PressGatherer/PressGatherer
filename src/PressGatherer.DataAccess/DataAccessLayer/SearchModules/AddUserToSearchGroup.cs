@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
 using PressGatherer.References.Enums;
 using PressGatherer.References.TransportModels.SearchModules;
 using System;
@@ -15,7 +16,7 @@ namespace PressGatherer.DataAccess.DataAccessLayer
             {
                 DbContext db = new DbContext();
 
-                var group = await db.SearchGroups.Find(x => x.GroupName == model.GroupName).SingleAsync();
+                var group = await db.SearchGroups.Find(x => x.Id == new ObjectId(model.GroupId)).SingleAsync();
 
                 if (!group.Users.Any(x => x.UserId == model.UserId))
                 {
@@ -28,7 +29,7 @@ namespace PressGatherer.DataAccess.DataAccessLayer
                     group.Users.Append(user);
                     group.LastChangedDate = DateTime.UtcNow;
 
-                    await db.SearchGroups.ReplaceOneAsync(x => x.GroupName == model.GroupName, group);
+                    await db.SearchGroups.ReplaceOneAsync(x => x.Id == new ObjectId(model.GroupId), group);
                 }
 
                 return new AddUserToSearchGroupTransportResponseModel(true); //still true if already exists?
