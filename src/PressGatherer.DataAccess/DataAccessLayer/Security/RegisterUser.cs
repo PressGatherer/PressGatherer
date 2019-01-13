@@ -16,7 +16,9 @@ namespace PressGatherer.DataAccess.DataAccessLayer
         public static async Task<RegisterTransportResponseModel> RegisterUser (RegisterTransportRequestModel model)
         {
             RegisterTransportResponseModel response = new RegisterTransportResponseModel();
-            if(model.UserName == "" || model.HashedPassword == "" || model.Email == "")
+            if(string.IsNullOrWhiteSpace(model.UserName) ||
+                string.IsNullOrWhiteSpace(model.HashedPassword) ||
+                string.IsNullOrWhiteSpace(model.Email))
             {
                 return response;
             }
@@ -52,9 +54,7 @@ namespace PressGatherer.DataAccess.DataAccessLayer
 
             DbContext db = new DbContext();
 
-            var pgUser = await db.Users.Find(x => x.Login.LoginName == model.UserName).FirstOrDefaultAsync();
-
-            if (pgUser == null)
+            if (await db.Users.CountDocumentsAsync(x => x.Login.LoginName == model.UserName) == 0)
             {
                 await db.Users.InsertOneAsync(user);
                 response.UserId = user.Id.ToString();
