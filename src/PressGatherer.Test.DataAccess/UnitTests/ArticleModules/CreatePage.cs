@@ -10,20 +10,20 @@ namespace PressGatherer.Test.DataAccess
     public class CreatePage
     {
         [TestMethod]
-        public void CreatePage_Successful()
+        public async void CreatePage_Successful()
         {
             var model = new CreatePageTransportRequestModel("NewTestPage_" + DateTime.UtcNow.ToString(), "http://test.com", "http://test.com", "http://test.com");
-            var result = PGAccess.CreatePage(model);
-            Assert.AreNotEqual("", result.Result.PageId);
+            var result = await PGAccess.CreatePage(model);
+            Assert.AreNotEqual("", result.PageId);
         }
 
         [TestMethod]
-        public void CreatePage_Failed_EmptyName()
+        public async void CreatePage_Failed_EmptyName()
         {
             try
             {
                 var model = new CreatePageTransportRequestModel("", "http://test.com", "http://test.com", "http://test.com");
-                var result = PGAccess.CreatePage(model);
+                var result = await PGAccess.CreatePage(model);
                 Assert.Fail();
             }
             catch (MissingNameAtCreatingPageException) { }

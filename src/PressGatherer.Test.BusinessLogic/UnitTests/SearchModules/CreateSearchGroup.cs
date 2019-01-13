@@ -11,21 +11,21 @@ namespace PressGatherer.Test.BusinessLogic
     public class CreateSearchGroup
     {
         [TestMethod]
-        public void CreateSearchGroup_Successful()
+        public async void CreateSearchGroup_Successful()
         {
             var userid = PGAccessForTest.GetFirstUserId();
             var model = new CreateSearchGroupTransportRequestModel("Test", userid.Result);
-            var result = SearchDriver.CreateSearchGroup(model);
-            Assert.AreNotEqual("", result.Result.SearchGroupId);
+            var result = await SearchDriver.CreateSearchGroup(model);
+            Assert.AreNotEqual("", result.SearchGroupId);
         }
 
         [TestMethod]
-        public void CreateSearchGroup_Failed_NoUser()
+        public async void CreateSearchGroup_Failed_NoUser()
         {
             try
             {
                 var model = new CreateSearchGroupTransportRequestModel("Test", "");
-                var result = SearchDriver.CreateSearchGroup(model);
+                var result = await SearchDriver.CreateSearchGroup(model);
                 Assert.Fail();
             }
             catch (MissingUserAtCreatingSearchGroupException) { }
@@ -36,13 +36,13 @@ namespace PressGatherer.Test.BusinessLogic
         }
 
         [TestMethod]
-        public void CreateSearchGroup_Failed_NoTitle()
+        public async void CreateSearchGroup_Failed_NoTitle()
         {
             try
             {
                 var userid = PGAccessForTest.GetFirstUserId();
                 var model = new CreateSearchGroupTransportRequestModel("", userid.Result);
-                var result = SearchDriver.CreateSearchGroup(model);
+                var result = await SearchDriver.CreateSearchGroup(model);
                 Assert.Fail();
             }
             catch (MissingTitleAtCreatingSearchGroupException) { }

@@ -3,6 +3,7 @@ using PressGatherer.DataAccess.DataAccessLayer;
 using PressGatherer.References.Exceptions;
 using PressGatherer.References.TransportModels.SearchModules;
 using System;
+using System.Threading.Tasks;
 
 namespace PressGatherer.Test.DataAccess
 {
@@ -10,22 +11,22 @@ namespace PressGatherer.Test.DataAccess
     public class AddSearchWordToSearchGroup
     {
         [TestMethod]
-        public void AddSearchWordToSearchGroup_Successful()
+        public async void AddSearchWordToSearchGroup_Successful()
         {
-            string searchGroupId = GetSearchGroupId();
+            string searchGroupId = await GetSearchGroupId();
             var model = new AddSearchWordToSearchGroupTransportRequestModel(searchGroupId, "word", 0);
-            var result = PGAccess.AddSearchWordToSearchGroup(model);
-            Assert.IsTrue(result.Result);
+            var result = await PGAccess.AddSearchWordToSearchGroup(model);
+            Assert.IsTrue(result);
         }
 
         [TestMethod]
-        public void AddSearchWordToSearchGroup_Failed_NoSearchGroup()
+        public async void AddSearchWordToSearchGroup_Failed_NoSearchGroup()
         {
             try
             {
                 string searchGroupId = "";
                 var model = new AddSearchWordToSearchGroupTransportRequestModel(searchGroupId, "word", 0);
-                var result = PGAccess.AddSearchWordToSearchGroup(model);
+                var result = await PGAccess.AddSearchWordToSearchGroup(model);
                 Assert.Fail();
             }
             catch (MissingSearchGroupAtAddSearchWordToSearchGroup) { }
@@ -36,13 +37,13 @@ namespace PressGatherer.Test.DataAccess
         }
 
         [TestMethod]
-        public void AddSearchWordToSearchGroup_Failed_NoWord()
+        public async void AddSearchWordToSearchGroup_Failed_NoWord()
         {
             try
             {
-                string searchGroupId = GetSearchGroupId();
+                string searchGroupId = await GetSearchGroupId();
                 var model = new AddSearchWordToSearchGroupTransportRequestModel(searchGroupId, "", 0);
-                var result = PGAccess.AddSearchWordToSearchGroup(model);
+                var result = await PGAccess.AddSearchWordToSearchGroup(model);
                 Assert.Fail();
             }
             catch (MissingWordAtAddSearchWordToSearchGroup) { }
@@ -53,14 +54,14 @@ namespace PressGatherer.Test.DataAccess
         }
 
         [TestMethod]
-        public void AddSearchWordToSearchGroup_Failed_DuplicateWord()
+        public async void AddSearchWordToSearchGroup_Failed_DuplicateWord()
         {
             try
             {
-                string searchGroupId = GetSearchGroupId();
+                string searchGroupId = await GetSearchGroupId();
                 var model = new AddSearchWordToSearchGroupTransportRequestModel(searchGroupId, "word", 0);
-                var result = PGAccess.AddSearchWordToSearchGroup(model);
-                var resultAgain = PGAccess.AddSearchWordToSearchGroup(model);
+                var result = await PGAccess.AddSearchWordToSearchGroup(model);
+                var resultAgain = await PGAccess.AddSearchWordToSearchGroup(model);
                 Assert.Fail();
             }
             catch (DuplicateWordExcelption) { }
@@ -70,12 +71,12 @@ namespace PressGatherer.Test.DataAccess
             }
         }
 
-        public string GetSearchGroupId()
+        public async Task<string> GetSearchGroupId()
         {
             var userid = PGAccessForTest.GetFirstUserId();
             var model = new CreateSearchGroupTransportRequestModel("Test_" + DateTime.UtcNow.ToString(), userid.Result);
-            var result = PGAccess.CreateSearchGroup(model);
-            return result.Result.SearchGroupId;
+            var result = await PGAccess.CreateSearchGroup(model);
+            return result.SearchGroupId;
         }
     }
 }

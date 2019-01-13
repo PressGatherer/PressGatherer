@@ -4,6 +4,7 @@ using PressGatherer.DataAccess.DataAccessLayer;
 using PressGatherer.References.TransportModels.SearchModules;
 using PressGatherer.References.Exceptions;
 using System;
+using System.Threading.Tasks;
 
 namespace PressGatherer.Test.BusinessLogic
 {
@@ -11,22 +12,22 @@ namespace PressGatherer.Test.BusinessLogic
     public class AddSearchWordToSearchGroup
     {
         [TestMethod]
-        public void AddSearchWordToSearchGroup_Successful()
+        public async void AddSearchWordToSearchGroup_Successful()
         {
-            string searchGroupId = GetSearchGroupId();
+            string searchGroupId = await GetSearchGroupId();
             var model = new AddSearchWordToSearchGroupTransportRequestModel(searchGroupId, "word",0);
-            var result = SearchDriver.AddSearchWordToSearchGroup(model);
-            Assert.IsTrue(result.Result.IsSuccesful);
+            var result = await SearchDriver.AddSearchWordToSearchGroup(model);
+            Assert.IsTrue(result.IsSuccesful);
         }
 
         [TestMethod]
-        public void AddSearchWordToSearchGroup_Failed_NoSearchGroup()
+        public async void AddSearchWordToSearchGroup_Failed_NoSearchGroup()
         {
             try
             {
                 string searchGroupId = "";
                 var model = new AddSearchWordToSearchGroupTransportRequestModel(searchGroupId, "word", 0);
-                var result = SearchDriver.AddSearchWordToSearchGroup(model);
+                var result = await SearchDriver.AddSearchWordToSearchGroup(model);
                 Assert.Fail();
             }
             catch (MissingSearchGroupAtAddSearchWordToSearchGroup) { }
@@ -37,13 +38,13 @@ namespace PressGatherer.Test.BusinessLogic
         }
 
         [TestMethod]
-        public void AddSearchWordToSearchGroup_Failed_NoWord()
+        public async void AddSearchWordToSearchGroup_Failed_NoWord()
         {
             try
             {
-                string searchGroupId = GetSearchGroupId();
+                string searchGroupId = await GetSearchGroupId();
                 var model = new AddSearchWordToSearchGroupTransportRequestModel(searchGroupId, "", 0);
-                var result = SearchDriver.AddSearchWordToSearchGroup(model);
+                var result = await SearchDriver.AddSearchWordToSearchGroup(model);
                 Assert.Fail();
             }
             catch (MissingWordAtAddSearchWordToSearchGroup) { }
@@ -54,14 +55,14 @@ namespace PressGatherer.Test.BusinessLogic
         }
 
         [TestMethod]
-        public void AddSearchWordToSearchGroup_Failed_DuplicateWord()
+        public async void AddSearchWordToSearchGroup_Failed_DuplicateWord()
         {
             try
             {
-                string searchGroupId = GetSearchGroupId();
+                string searchGroupId = await GetSearchGroupId();
                 var model = new AddSearchWordToSearchGroupTransportRequestModel(searchGroupId, "word", 0);
-                var result = SearchDriver.AddSearchWordToSearchGroup(model);
-                var resultAgain = SearchDriver.AddSearchWordToSearchGroup(model);
+                var result = await SearchDriver.AddSearchWordToSearchGroup(model);
+                var resultAgain = await SearchDriver.AddSearchWordToSearchGroup(model);
                 Assert.Fail();
             }
             catch (DuplicateWordExcelption) { }
@@ -71,12 +72,12 @@ namespace PressGatherer.Test.BusinessLogic
             }
         }
 
-        public string GetSearchGroupId()
+        public async Task<string> GetSearchGroupId()
         {
             var userid = PGAccessForTest.GetFirstUserId();
             var model = new CreateSearchGroupTransportRequestModel("Test_" + DateTime.UtcNow.ToString(), userid.Result);
-            var result = SearchDriver.CreateSearchGroup(model);
-            return result.Result.SearchGroupId;
+            var result = await SearchDriver.CreateSearchGroup(model);
+            return result.SearchGroupId;
         }
     }
 }

@@ -10,21 +10,21 @@ namespace PressGatherer.Test.DataAccess
     public class CreateSearchGroup
     {
         [TestMethod]
-        public void CreateSearchGroup_Successful()
+        public async void CreateSearchGroup_Successful()
         {
-            var userid = PGAccessForTest.GetFirstUserId();
-            var model = new CreateSearchGroupTransportRequestModel("Test", userid.Result);
-            var result = PGAccess.CreateSearchGroup(model);
-            Assert.AreNotEqual("", result.Result.SearchGroupId);
+            var userid = await PGAccessForTest.GetFirstUserId();
+            var model = new CreateSearchGroupTransportRequestModel("Test", userid);
+            var result = await PGAccess.CreateSearchGroup(model);
+            Assert.AreNotEqual("", result.SearchGroupId);
         }
 
         [TestMethod]
-        public void CreateSearchGroup_Failed_NoUser()
+        public async void CreateSearchGroup_Failed_NoUser()
         {
             try
             {
                 var model = new CreateSearchGroupTransportRequestModel("Test", "");
-                var result = PGAccess.CreateSearchGroup(model);
+                var result = await PGAccess.CreateSearchGroup(model);
                 Assert.Fail();
             }
             catch (MissingUserAtCreatingSearchGroupException) { }
@@ -35,13 +35,13 @@ namespace PressGatherer.Test.DataAccess
         }
 
         [TestMethod]
-        public void CreateSearchGroup_Failed_NoTitle()
+        public async void CreateSearchGroup_Failed_NoTitle()
         {
             try
             {
                 var userid = PGAccessForTest.GetFirstUserId();
                 var model = new CreateSearchGroupTransportRequestModel("", userid.Result);
-                var result = PGAccess.CreateSearchGroup(model);
+                var result = await PGAccess.CreateSearchGroup(model);
                 Assert.Fail();
             }
             catch (MissingTitleAtCreatingSearchGroupException) { }
