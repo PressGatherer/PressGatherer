@@ -28,7 +28,7 @@ namespace PressGatherer.Test.DataAccess
                 var result = await PGAccess.CreateSearchGroup(model);
                 Assert.Fail();
             }
-            catch (MissingUserAtCreatingSearchGroupException) { }
+            catch (MissingUserException) { }
             catch
             {
                 Assert.Fail();
@@ -45,7 +45,7 @@ namespace PressGatherer.Test.DataAccess
                 var result = await PGAccess.CreateSearchGroup(model);
                 Assert.Fail();
             }
-            catch (MissingTitleAtCreatingSearchGroupException) { }
+            catch (MissingTitleException) { }
             catch
             {
                 Assert.Fail();

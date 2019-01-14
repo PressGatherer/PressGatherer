@@ -27,7 +27,7 @@ namespace PressGatherer.Test.BusinessLogic
                 var result = await ArticleDriver.RemovePage(new RemovePageTransportRequestModel(""));
                 Assert.Fail();
             }
-            catch (NoPageExistsAtRemovePageException) { }
+            catch (MissingPageException) { }
             catch
             {
                 Assert.Fail();

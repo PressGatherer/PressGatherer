@@ -9,27 +9,31 @@ using System.Threading.Tasks;
 namespace PressGatherer.Test.BusinessLogic
 {
     [TestClass]
-    public class AddUserToSearchGroup
+    public class ModifyUserOnSearchGroup
     {
         [TestMethod]
-        public async Task AddUserToSearchGroup_Successful()
+        public async Task ModifyUserOnSearchGroup_Successful()
         {
             string searchGroupId = await GetSearchGroupId();
             string userId = await PGAccessForTest.GetFirstUserId();
-            var model = new AddUserToSearchGroupTransportRequestModel(searchGroupId, userId);
-            var result = await SearchDriver.AddUserToSearchGroup(model);
+            var addUserModel = new AddUserToSearchGroupTransportRequestModel(searchGroupId, userId);
+            await SearchDriver.AddUserToSearchGroup(addUserModel);
+            var model = new ModifyUserOnSearchGroupTransportRequestModel(searchGroupId, userId, References.Enums.UserAccessTypeEnum.Admin);
+            var result = await SearchDriver.ModifyUserOnSearchGroup(model);
             Assert.IsTrue(result.Success);
         }
 
         [TestMethod]
-        public async Task AddUserToSearchGroup_Failed_NoSearchGroup()
+        public async Task ModifyUserOnSearchGroup_Failed_NoSearchGroup()
         {
             try
             {
                 string searchGroupId = "";
                 string userId = await PGAccessForTest.GetFirstUserId();
-                var model = new AddUserToSearchGroupTransportRequestModel(searchGroupId, userId);
-                var result = await SearchDriver.AddUserToSearchGroup(model);
+                var addUserModel = new AddUserToSearchGroupTransportRequestModel(searchGroupId, userId);
+                await SearchDriver.AddUserToSearchGroup(addUserModel);
+                var model = new ModifyUserOnSearchGroupTransportRequestModel(searchGroupId, userId, References.Enums.UserAccessTypeEnum.Admin);
+                var result = await SearchDriver.ModifyUserOnSearchGroup(model);
                 Assert.Fail();
             }
             catch (MissingSearchGroupException) { }
@@ -40,36 +44,17 @@ namespace PressGatherer.Test.BusinessLogic
         }
 
         [TestMethod]
-        public async Task AddUserToSearchGroup_Failed_NoUser()
+        public async Task ModifyUserOnSearchGroup_Failed_MissingUser()
         {
             try
             {
                 string searchGroupId = await GetSearchGroupId();
                 string userId = "";
-                var model = new AddUserToSearchGroupTransportRequestModel(searchGroupId, userId);
-                var result = await SearchDriver.AddUserToSearchGroup(model);
+                var model = new ModifyUserOnSearchGroupTransportRequestModel(searchGroupId, userId, References.Enums.UserAccessTypeEnum.Admin);
+                var result = await SearchDriver.ModifyUserOnSearchGroup(model);
                 Assert.Fail();
             }
             catch (MissingUserException) { }
-            catch
-            {
-                Assert.Fail();
-            }
-        }
-
-        [TestMethod]
-        public async Task AddUserToSearchGroup_Failed_DuplicateUser()
-        {
-            try
-            {
-                string searchGroupId = await GetSearchGroupId();
-                string userId = await PGAccessForTest.GetFirstUserId();
-                var model = new AddUserToSearchGroupTransportRequestModel(searchGroupId, userId);
-                var result = await SearchDriver.AddUserToSearchGroup(model);
-                var resultAgain = await SearchDriver.AddUserToSearchGroup(model);
-                Assert.Fail();
-            }
-            catch (DuplicateUserException) { }
             catch
             {
                 Assert.Fail();
@@ -80,7 +65,7 @@ namespace PressGatherer.Test.BusinessLogic
         {
             var userid = PGAccessForTest.GetFirstUserId();
             var model = new CreateSearchGroupTransportRequestModel("Test_" + DateTime.UtcNow.ToString(), userid.Result);
-            var result = await SearchDriver.CreateSearchGroup(model);
+            var result = await PGAccess.CreateSearchGroup(model);
             return result.SearchGroupId;
         }
     }

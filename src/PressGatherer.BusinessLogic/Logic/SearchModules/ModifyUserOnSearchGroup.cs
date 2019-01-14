@@ -2,7 +2,7 @@
 using PressGatherer.DataAccess.DataAccessLayer;
 using PressGatherer.References.TransportModels.SearchModules;
 
-namespace PressGatherer.BusinessLogic.Logic.SearchModules
+namespace PressGatherer.BusinessLogic.SearchModules
 {
     public partial class SearchDriver
     {

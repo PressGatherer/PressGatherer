@@ -27,7 +27,7 @@ namespace PressGatherer.Test.BusinessLogic
                 var result = await ArticleDriver.CreateArticle(model);
                 Assert.Fail();
             }
-            catch (MissingTitleAtCreatingArticleException) { }
+            catch (MissingTitleException) { }
             catch
             {
                 Assert.Fail();
@@ -43,7 +43,7 @@ namespace PressGatherer.Test.BusinessLogic
                 var result = await ArticleDriver.CreateArticle(model);
                 Assert.Fail();
             }
-            catch (MissingTitleAtCreatingArticleException) { }
+            catch (MissingTitleException) { }
             catch
             {
                 Assert.Fail();

@@ -29,7 +29,7 @@ namespace PressGatherer.Test.BusinessLogic
                 var result = await SearchDriver.CreateSearchGroup(model);
                 Assert.Fail();
             }
-            catch (MissingUserAtCreatingSearchGroupException) { }
+            catch (MissingUserException) { }
             catch
             {
                 Assert.Fail();
@@ -46,7 +46,7 @@ namespace PressGatherer.Test.BusinessLogic
                 var result = await SearchDriver.CreateSearchGroup(model);
                 Assert.Fail();
             }
-            catch (MissingTitleAtCreatingSearchGroupException) { }
+            catch (MissingTitleException) { }
             catch
             {
                 Assert.Fail();

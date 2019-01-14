@@ -8,27 +8,31 @@ using System.Threading.Tasks;
 namespace PressGatherer.Test.DataAccess
 {
     [TestClass]
-    public class AddUserToSearchGroup
+    public class ModifyUserOnSearchGroup
     {
         [TestMethod]
-        public async Task AddUserToSearchGroup_Successful()
+        public async Task ModifyUserOnSearchGroup_Successful()
         {
             string searchGroupId = await GetSearchGroupId();
             string userId = await PGAccessForTest.GetFirstUserId();
-            var model = new AddUserToSearchGroupTransportRequestModel(searchGroupId,userId);
-            var result = await PGAccess.AddUserToSearchGroup(model);
+            var addUserModel = new AddUserToSearchGroupTransportRequestModel(searchGroupId, userId);
+            await PGAccess.AddUserToSearchGroup(addUserModel);
+            var model = new ModifyUserOnSearchGroupTransportRequestModel(searchGroupId, userId, References.Enums.UserAccessTypeEnum.Admin);
+            var result = await PGAccess.ModifyUserOnSearchGroup(model);
             Assert.IsTrue(result.Success);
         }
 
         [TestMethod]
-        public async Task AddUserToSearchGroup_Failed_NoSearchGroup()
+        public async Task ModifyUserOnSearchGroup_Failed_NoSearchGroup()
         {
             try
             {
                 string searchGroupId = "";
                 string userId = await PGAccessForTest.GetFirstUserId();
-                var model = new AddUserToSearchGroupTransportRequestModel(searchGroupId, userId);
-                var result = await PGAccess.AddUserToSearchGroup(model);
+                var addUserModel = new AddUserToSearchGroupTransportRequestModel(searchGroupId, userId);
+                await PGAccess.AddUserToSearchGroup(addUserModel);
+                var model = new ModifyUserOnSearchGroupTransportRequestModel(searchGroupId, userId, References.Enums.UserAccessTypeEnum.Admin);
+                var result = await PGAccess.ModifyUserOnSearchGroup(model);
                 Assert.Fail();
             }
             catch (MissingSearchGroupException) { }
@@ -39,36 +43,17 @@ namespace PressGatherer.Test.DataAccess
         }
 
         [TestMethod]
-        public async Task AddUserToSearchGroup_Failed_NoUser()
+        public async Task ModifyUserOnSearchGroup_Failed_MissingUser()
         {
             try
             {
                 string searchGroupId = await GetSearchGroupId();
                 string userId = "";
-                var model = new AddUserToSearchGroupTransportRequestModel(searchGroupId, userId);
-                var result = await PGAccess.AddUserToSearchGroup(model);
+                var model = new ModifyUserOnSearchGroupTransportRequestModel(searchGroupId, userId, References.Enums.UserAccessTypeEnum.Admin);
+                var result = await PGAccess.ModifyUserOnSearchGroup(model);
                 Assert.Fail();
             }
             catch (MissingUserException) { }
-            catch
-            {
-                Assert.Fail();
-            }
-        }
-
-        [TestMethod]
-        public async Task AddUserToSearchGroup_Failed_DuplicateUser()
-        {
-            try
-            {
-                string searchGroupId = await GetSearchGroupId();
-                string userId = await PGAccessForTest.GetFirstUserId();
-                var model = new AddUserToSearchGroupTransportRequestModel(searchGroupId, userId);
-                var result = await PGAccess.AddUserToSearchGroup(model);
-                var resultAgain = await PGAccess.AddUserToSearchGroup(model);
-                Assert.Fail();
-            }
-            catch (DuplicateUserException) { }
             catch
             {
                 Assert.Fail();

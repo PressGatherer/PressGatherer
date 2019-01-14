@@ -30,7 +30,7 @@ namespace PressGatherer.Test.BusinessLogic
                 var result = await SearchDriver.AddSearchWordToSearchGroup(model);
                 Assert.Fail();
             }
-            catch (MissingSearchGroupAtAddSearchWordToSearchGroup) { }
+            catch (MissingSearchGroupException) { }
             catch
             {
                 Assert.Fail();
@@ -47,7 +47,7 @@ namespace PressGatherer.Test.BusinessLogic
                 var result = await SearchDriver.AddSearchWordToSearchGroup(model);
                 Assert.Fail();
             }
-            catch (MissingWordAtAddSearchWordToSearchGroup) { }
+            catch (MissingWordException) { }
             catch
             {
                 Assert.Fail();
@@ -65,7 +65,7 @@ namespace PressGatherer.Test.BusinessLogic
                 var resultAgain = await SearchDriver.AddSearchWordToSearchGroup(model);
                 Assert.Fail();
             }
-            catch (DuplicateWordExceptionAtAddSearchWordToSearchGroup) { }
+            catch (DuplicateWordException) { }
             catch
             {
                 Assert.Fail();

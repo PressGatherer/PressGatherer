@@ -3,9 +3,9 @@
 namespace PressGatherer.References.Exceptions
 {
     [Serializable]
-    public class NoPageExistsAtRemovePageException : Exception
+    public class MissingLinkException : Exception
     {
-        public NoPageExistsAtRemovePageException()
+        public MissingLinkException()
         {
 
         }

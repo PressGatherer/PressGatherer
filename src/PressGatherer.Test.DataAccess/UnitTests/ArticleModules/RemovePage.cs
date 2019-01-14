@@ -19,7 +19,6 @@ namespace PressGatherer.Test.DataAccess
             Assert.IsTrue(result.Removed);
         }
         
-
         [TestMethod]
         public async Task RemovePage_Failed_PageNotExists()
         {
@@ -28,7 +27,7 @@ namespace PressGatherer.Test.DataAccess
                 var result = await PGAccess.RemovePage(new RemovePageTransportRequestModel(""));
                 Assert.Fail();
             }
-            catch (NoPageExistsAtRemovePageException) { }
+            catch (MissingPageException) { }
             catch
             {
                 Assert.Fail();

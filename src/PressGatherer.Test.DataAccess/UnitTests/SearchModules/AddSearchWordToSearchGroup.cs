@@ -29,7 +29,7 @@ namespace PressGatherer.Test.DataAccess
                 var result = await PGAccess.AddSearchWordToSearchGroup(model);
                 Assert.Fail();
             }
-            catch (MissingSearchGroupAtAddSearchWordToSearchGroup) { }
+            catch (MissingSearchGroupException) { }
             catch
             {
                 Assert.Fail();
@@ -46,7 +46,7 @@ namespace PressGatherer.Test.DataAccess
                 var result = await PGAccess.AddSearchWordToSearchGroup(model);
                 Assert.Fail();
             }
-            catch (MissingWordAtAddSearchWordToSearchGroup) { }
+            catch (MissingWordException) { }
             catch
             {
                 Assert.Fail();
@@ -64,7 +64,7 @@ namespace PressGatherer.Test.DataAccess
                 var resultAgain = await PGAccess.AddSearchWordToSearchGroup(model);
                 Assert.Fail();
             }
-            catch (DuplicateWordExceptionAtAddSearchWordToSearchGroup) { }
+            catch (DuplicateWordException) { }
             catch
             {
                 Assert.Fail();

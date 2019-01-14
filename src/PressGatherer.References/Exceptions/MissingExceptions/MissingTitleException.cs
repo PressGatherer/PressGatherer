@@ -3,9 +3,9 @@
 namespace PressGatherer.References.Exceptions
 {
     [Serializable]
-    public class MissingUserAtAddUserToSearchGroup : Exception
+    public class MissingTitleException : Exception
     {
-        public MissingUserAtAddUserToSearchGroup()
+        public MissingTitleException()
         {
 
         }
