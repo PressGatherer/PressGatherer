@@ -1,6 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using PressGatherer.References.Enums;
+using PressGatherer.References.Exceptions;
 using PressGatherer.References.Logics;
 using PressGatherer.References.TransportModels.Security;
 using System;
@@ -14,47 +15,56 @@ namespace PressGatherer.DataAccess.DataAccessLayer
     {
         public static async Task<RegisterTransportResponseModel> RegisterUser (RegisterTransportRequestModel model)
         {
-            try
+            RegisterTransportResponseModel response = new RegisterTransportResponseModel();
+            if(string.IsNullOrWhiteSpace(model.UserName) ||
+                string.IsNullOrWhiteSpace(model.HashedPassword) ||
+                string.IsNullOrWhiteSpace(model.Email))
             {
-                string salt = TokenLogics.GetToken();
-                string hashedPassword = Encoding.UTF8.GetString(HashLogics.Hash(model.HashedPassword, salt));
-                string validationtoken = TokenLogics.GetToken();
-                PGUser user = new PGUser
-                {
-                    CreatedDate = DateTime.UtcNow,
-                    Email = model.Email,
-                    LastChangedDate = DateTime.UtcNow,
-                    Name = model.Name,
-                    Type = UserTypeEnum.Basic,
-                    Login = new LoginElement
-                    {
-                        LoginName = model.UserName,
-                        HashedPassword = hashedPassword,
-                        Salt = salt,
-                        AuthenticationToken = "",
-                        RefreshToken = "",
-                        AuthenticationTokenTimeOut = DateTime.UtcNow,
-                        RefreshTokenTimeOut = DateTime.UtcNow,
-                        LastRequestDate = DateTime.UtcNow,
-                    },
-                    Validation = new ValidationElement
-                    {
-                        Validated = false,
-                        ValidationToken = validationtoken
-                    }
-                };
-
-                DbContext db = new DbContext();
-
-                await db.Users.InsertOneAsync(user);
-
-                RegisterTransportResponseModel response = new RegisterTransportResponseModel(user.Id.ToString());
                 return response;
             }
-            catch
+
+            string salt = TokenLogics.GetToken();
+            string hashedPassword = Encoding.UTF8.GetString(HashLogics.Hash(model.HashedPassword, salt));
+            string validationtoken = TokenLogics.GetToken();
+            PGUser user = new PGUser
             {
-                return new RegisterTransportResponseModel();
+                Id = new ObjectId(),
+                CreatedDate = DateTime.UtcNow,
+                Email = model.Email,
+                LastChangedDate = DateTime.UtcNow,
+                Name = model.Name,
+                Type = UserTypeEnum.Basic,
+                Login = new LoginElement
+                {
+                    LoginName = model.UserName,
+                    HashedPassword = hashedPassword,
+                    Salt = salt,
+                    AuthenticationToken = "",
+                    RefreshToken = "",
+                    AuthenticationTokenTimeOut = DateTime.UtcNow,
+                    RefreshTokenTimeOut = DateTime.UtcNow,
+                    LastRequestDate = DateTime.UtcNow,
+                },
+                Validation = new ValidationElement
+                {
+                    Validated = false,
+                    ValidationToken = validationtoken
+                }
+            };
+
+            DbContext db = new DbContext();
+
+            if (await db.Users.CountDocumentsAsync(x => x.Login.LoginName == model.UserName) == 0)
+            {
+                await db.Users.InsertOneAsync(user);
+                response.UserId = user.Id.ToString();
             }
+            else
+            {
+                throw new DuplicateUserException();
+            }
+
+            return response;
         }
     }
 }
