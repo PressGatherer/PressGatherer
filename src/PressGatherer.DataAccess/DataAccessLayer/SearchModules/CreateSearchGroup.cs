@@ -6,6 +6,7 @@ using PressGatherer.References.Enums;
 using MongoDB.Driver;
 using MongoDB.Bson;
 using System.Linq;
+using PressGatherer.References.Exceptions;
 
 namespace PressGatherer.DataAccess.DataAccessLayer
 {
@@ -13,42 +14,45 @@ namespace PressGatherer.DataAccess.DataAccessLayer
     {
         public static async Task<CreateSearchGroupTransportResponseModel> CreateSearchGroup(CreateSearchGroupTransportRequestModel model)
         {
-            try
+            if (string.IsNullOrWhiteSpace(model.GroupName))
             {
-                DbContext db = new DbContext();
-
-                List<SearchGroupAccess> searchGroupAccessesList = new List<SearchGroupAccess>
-                {
-                    new SearchGroupAccess
-                    {
-                        UserId = model.UserId,
-                        AccessType = UserAccessTypeEnum.Admin
-                    }
-                };
-
-                SearchGroup group = new SearchGroup
-                {
-                    CreatedDate = DateTime.UtcNow,
-                    GroupName = model.GroupName,
-                    SearchWords = new List<SearchWord>(),
-                    Users = searchGroupAccessesList,
-                    Accessibility = SearchGroupAccessibilityEnum.Private,
-                    RefreshStatus = new RefreshStatus
-                    {
-                        Rate = RefreshRateEnum.EveryDay,
-                        LastRefreshed = DateTime.UtcNow
-                    },
-                    LastChangedDate = DateTime.UtcNow,
-                };
-
-                await db.SearchGroups.InsertOneAsync(group);
-
-                return new CreateSearchGroupTransportResponseModel(group.Id.ToString());
+                throw new MissingTitleException();
             }
-            catch
+
+            if (string.IsNullOrWhiteSpace(model.UserId))
             {
-                return new CreateSearchGroupTransportResponseModel();
+                throw new MissingUserException();
             }
+
+            DbContext db = new DbContext();
+
+            List<SearchGroupAccess> searchGroupAccessesList = new List<SearchGroupAccess>
+            {
+                new SearchGroupAccess
+                {
+                    UserId = model.UserId,
+                    AccessType = UserAccessTypeEnum.Admin
+                }
+            };
+
+            SearchGroup group = new SearchGroup
+            {
+                CreatedDate = DateTime.UtcNow,
+                GroupName = model.GroupName,
+                SearchWords = new List<SearchWord>(),
+                Users = searchGroupAccessesList,
+                Accessibility = SearchGroupAccessibilityEnum.Private,
+                RefreshStatus = new RefreshStatus
+                {
+                    Rate = RefreshRateEnum.EveryDay,
+                    LastRefreshed = DateTime.UtcNow
+                },
+                LastChangedDate = DateTime.UtcNow,
+            };
+
+            await db.SearchGroups.InsertOneAsync(group);
+
+            return new CreateSearchGroupTransportResponseModel(group.Id.ToString());
         }
     }
 }
