@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
+using PressGatherer.References.Exceptions;
 using PressGatherer.References.TransportModels.SearchModules;
 using System;
 using System.Linq;
@@ -11,13 +12,27 @@ namespace PressGatherer.DataAccess.DataAccessLayer
     {
         public static async Task<ModifyUserOnSearchGroupTransportResponseModel> ModifyUserOnSearchGroup(ModifyUserOnSearchGroupTransportRequestModel model)
         {
-            try
+            var response = new ModifyUserOnSearchGroupTransportResponseModel();
+
+            if (string.IsNullOrWhiteSpace(model.GroupId))
             {
-                DbContext db = new DbContext();
+                throw new MissingSearchGroupException();
+            }
 
-                var group = await db.SearchGroups.Find(x => x.Id == new ObjectId(model.GroupId)).SingleAsync();
+            if (string.IsNullOrWhiteSpace(model.UserId))
+            {
+                throw new MissingUserException();
+            }
 
-                if (group.Users.Where(x => x.UserId == model.UserId).Count() == 1)
+            DbContext db = new DbContext();
+
+            var objectId = new ObjectId(model.GroupId);
+            var find = await db.SearchGroups.FindAsync(x => x.Id.Equals(objectId));
+            var group = await find.SingleOrDefaultAsync();
+
+            if (group != null)
+            {
+                if (group.Users.Count(x => x.UserId == model.UserId) == 1)
                 {
                     group.Users
                         .Where(x => x.UserId == model.UserId)
@@ -25,14 +40,11 @@ namespace PressGatherer.DataAccess.DataAccessLayer
                         .AccessType = model.UserAccessType;
 
                     await db.SearchGroups.ReplaceOneAsync(x => x.GroupName == model.GroupId, group);
-                }
+                    response.Success = true;
+                }                
+            }
 
-                return new ModifyUserOnSearchGroupTransportResponseModel(true);
-            }
-            catch
-            {
-                return new ModifyUserOnSearchGroupTransportResponseModel();
-            }
+            return response;
         }
     }
 }
