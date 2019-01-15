@@ -6,9 +6,9 @@ namespace PressGatherer.BusinessLogic.SearchModules
 {
     public partial class SearchDriver
     {
-        public static async Task<AddSearchWordToSearchGroupTransportResponseModel> AddSearchWord(AddSearchWordToSearchGroupTransportRequestModel request)
+        public static async Task<AddSearchWordToSearchGroupTransportResponseModel> AddSearchWordToSearchGroup(AddSearchWordToSearchGroupTransportRequestModel request)
         {
-            bool IsAddWordSuccessful = await PGAccess.AddSearchWord(request);
+            bool IsAddWordSuccessful = await PGAccess.AddSearchWordToSearchGroup(request);
 
             if (IsAddWordSuccessful)
             {

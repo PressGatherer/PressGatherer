@@ -1,11 +1,11 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PressGatherer.DataAccess.DataAccessLayer;
+using PressGatherer.BusinessLogic.Security;
 using PressGatherer.References.TransportModels.Security;
 using PressGatherer.References.Exceptions;
 using System;
 using System.Threading.Tasks;
 
-namespace PressGatherer.Test.DataAccess
+namespace PressGatherer.Test.BusinessLogic
 {
     [TestClass]
     public class RegisterUser
@@ -14,7 +14,7 @@ namespace PressGatherer.Test.DataAccess
         public async Task RegisterUser_Successful()
         {
             var model = new RegisterTransportRequestModel("UserName_" + DateTime.UtcNow.ToString(), "Password", "username@username.com", "Full Username");
-            var result = await PGAccess.RegisterUser(model);
+            var result = await SecurityDriver.RegisterUser(model);   
             Assert.AreNotEqual("", result.UserId);
         }
 
@@ -25,9 +25,9 @@ namespace PressGatherer.Test.DataAccess
             {
                 var username = "UserName_" + DateTime.UtcNow.ToString();
                 var model = new RegisterTransportRequestModel(username, "Password", "username@username.com", "Full Username");
-                var result = await PGAccess.RegisterUser(model);
+                var result = await SecurityDriver.RegisterUser(model);
                 model = new RegisterTransportRequestModel(username, "Password", "username@username.com", "Full Username");
-                result = await PGAccess.RegisterUser(model);
+                result = await SecurityDriver.RegisterUser(model);
                 Assert.Fail();
             }
             catch (DuplicateUserException) { }
@@ -41,7 +41,7 @@ namespace PressGatherer.Test.DataAccess
         public async Task RegisterUser_Failed_MissingName()
         {
             var model = new RegisterTransportRequestModel("", "Password", "username@username.com", "Full Username");
-            var result = await PGAccess.RegisterUser(model);
+            var result = await SecurityDriver.RegisterUser(model);
             Assert.AreEqual("", result.UserId);
         }
 
@@ -49,7 +49,7 @@ namespace PressGatherer.Test.DataAccess
         public async Task RegisterUser_Failed_MissingPassword()
         {
             var model = new RegisterTransportRequestModel("UserName_" + DateTime.UtcNow.ToString(), "", "username@username.com", "Full Username");
-            var result = await PGAccess.RegisterUser(model);
+            var result = await SecurityDriver.RegisterUser(model);
             Assert.AreEqual("", result.UserId);
         }
 
@@ -57,7 +57,7 @@ namespace PressGatherer.Test.DataAccess
         public async Task RegisterUser_Failed_MissingEmail()
         {
             var model = new RegisterTransportRequestModel("UserName_" + DateTime.UtcNow.ToString(), "Password", "", "Full Username");
-            var result = await PGAccess.RegisterUser(model);
+            var result = await SecurityDriver.RegisterUser(model);
             Assert.AreEqual("", result.UserId);
         }
     }

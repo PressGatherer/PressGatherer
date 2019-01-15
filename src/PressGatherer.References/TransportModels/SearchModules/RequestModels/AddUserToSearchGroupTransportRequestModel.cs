@@ -2,18 +2,18 @@
 {
     public class AddUserToSearchGroupTransportRequestModel
     {
-        public string GroupName { get; set; }
+        public string GroupId { get; set; }
         public string UserId { get; set; }
 
         public AddUserToSearchGroupTransportRequestModel()
         {
-            GroupName = "";
+            GroupId = "";
             UserId = "";
         }
 
-        public AddUserToSearchGroupTransportRequestModel(string groupName, string userId)
+        public AddUserToSearchGroupTransportRequestModel(string groupId, string userId)
         {
-            GroupName = groupName;
+            GroupId = groupId;
             UserId = userId;
         }
     }

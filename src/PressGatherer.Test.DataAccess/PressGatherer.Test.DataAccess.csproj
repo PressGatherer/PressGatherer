@@ -19,8 +19,6 @@
 
   <ItemGroup>
     <Folder Include="LogicalTests\" />
-    <Folder Include="UnitTests\ArticleModules\" />
-    <Folder Include="UnitTests\SearchModules\" />
   </ItemGroup>
 
 </Project>

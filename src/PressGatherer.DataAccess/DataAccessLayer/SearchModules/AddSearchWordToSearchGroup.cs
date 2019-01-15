@@ -9,23 +9,17 @@ namespace PressGatherer.DataAccess.DataAccessLayer
 {
     public partial class PGAccess
     {
-        public static async Task<bool> AddSearchWord(AddSearchWordToSearchGroupTransportRequestModel model)
+        public static async Task<bool> AddSearchWordToSearchGroup(AddSearchWordToSearchGroupTransportRequestModel model)
         {
             try
             {
                 DbContext db = new DbContext();
 
-                string Id = model.SearchGroupId;
+                SearchWord wordToAdd = new SearchWord { Word = model.Word, Order = model.Order };
 
-                var findSearchGroup = await db.SearchGroups.Find(x => x.Id == new ObjectId(Id)).ToListAsync();
-
-                var response = findSearchGroup.Single();
-
-                List<SearchWord> searchWords = response.SearchWords.ToList();
-                searchWords.Add(new SearchWord { Word = model.Word, Order = model.Order });
-                response.SearchWords = searchWords;
-
-                await db.SearchGroups.ReplaceOneAsync(x => x.Id == new ObjectId(Id), response);
+                var filter = Builders<SearchGroup>.Filter.Eq(e => e.Id, new ObjectId(model.SearchGroupId));
+                var update = Builders<SearchGroup>.Update.Push<SearchWord>(e => e.SearchWords, wordToAdd);
+                await db.SearchGroups.FindOneAndUpdateAsync(filter, update);
 
                 return true;
             }
