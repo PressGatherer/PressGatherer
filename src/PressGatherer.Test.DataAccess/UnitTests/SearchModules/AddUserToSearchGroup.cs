@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MongoDB.Bson;
 using PressGatherer.DataAccess.DataAccessLayer;
 using PressGatherer.References.Exceptions;
 using PressGatherer.References.TransportModels.SearchModules;
@@ -14,7 +15,7 @@ namespace PressGatherer.Test.DataAccess
         public async Task AddUserToSearchGroup_Successful()
         {
             string searchGroupId = await GetSearchGroupId();
-            string userId = await PGAccessForTest.GetFirstUserId();
+            string userId = ObjectId.GenerateNewId().ToString();
             var model = new AddUserToSearchGroupTransportRequestModel(searchGroupId,userId);
             var result = await PGAccess.AddUserToSearchGroup(model);
             Assert.IsTrue(result.Success);

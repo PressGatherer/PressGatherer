@@ -5,6 +5,7 @@ using PressGatherer.References.TransportModels.SearchModules;
 using PressGatherer.References.Exceptions;
 using System;
 using System.Threading.Tasks;
+using MongoDB.Bson;
 
 namespace PressGatherer.Test.BusinessLogic
 {
@@ -15,7 +16,7 @@ namespace PressGatherer.Test.BusinessLogic
         public async Task AddUserToSearchGroup_Successful()
         {
             string searchGroupId = await GetSearchGroupId();
-            string userId = await PGAccessForTest.GetFirstUserId();
+            string userId = ObjectId.GenerateNewId().ToString();
             var model = new AddUserToSearchGroupTransportRequestModel(searchGroupId, userId);
             var result = await SearchDriver.AddUserToSearchGroup(model);
             Assert.IsTrue(result.Success);

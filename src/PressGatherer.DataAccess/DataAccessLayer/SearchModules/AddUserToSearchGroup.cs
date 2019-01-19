@@ -1,6 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using PressGatherer.References.Enums;
+using PressGatherer.References.Exceptions;
 using PressGatherer.References.TransportModels.SearchModules;
 using System;
 using System.Linq;
@@ -12,32 +13,38 @@ namespace PressGatherer.DataAccess.DataAccessLayer
     {
         public static async Task<AddUserToSearchGroupTransportResponseModel> AddUserToSearchGroup(AddUserToSearchGroupTransportRequestModel model)
         {
-            try
+            if (string.IsNullOrWhiteSpace(model.GroupId))
             {
-                DbContext db = new DbContext();
+                throw new MissingSearchGroupException();
+            }
+            if (string.IsNullOrWhiteSpace(model.UserId))
+            {
+                throw new MissingUserException();
+            }
 
-                var group = await db.SearchGroups.Find(x => x.Id == new ObjectId(model.GroupId)).SingleAsync();
+            DbContext db = new DbContext();
 
-                if (!group.Users.Any(x => x.UserId == model.UserId))
+            var group = await db.SearchGroups.Find(x => x.Id == new ObjectId(model.GroupId)).SingleAsync();
+
+            if (!group.Users.Any(x => x.UserId == model.UserId))
+            {
+                var user = new SearchGroupAccess
                 {
-                    var user = new SearchGroupAccess
-                    {
-                        UserId = model.UserId,
-                        AccessType = UserAccessTypeEnum.View
-                    };
+                    UserId = model.UserId,
+                    AccessType = UserAccessTypeEnum.View
+                };
 
-                    group.Users.Append(user);
-                    group.LastChangedDate = DateTime.UtcNow;
+                group.Users.Append(user);
+                group.LastChangedDate = DateTime.UtcNow;
 
-                    await db.SearchGroups.ReplaceOneAsync(x => x.Id == new ObjectId(model.GroupId), group);
-                }
-
-                return new AddUserToSearchGroupTransportResponseModel(true); //still true if already exists?
+                await db.SearchGroups.ReplaceOneAsync(x => x.Id == new ObjectId(model.GroupId), group);
             }
-            catch
+            else
             {
-                return new AddUserToSearchGroupTransportResponseModel();
+                throw new DuplicateUserException();
             }
+
+            return new AddUserToSearchGroupTransportResponseModel(true);
         }
     }
 }
