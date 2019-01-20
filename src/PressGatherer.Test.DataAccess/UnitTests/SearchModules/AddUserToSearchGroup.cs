@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MongoDB.Bson;
 using PressGatherer.DataAccess.DataAccessLayer;
 using PressGatherer.References.Exceptions;
 using PressGatherer.References.TransportModels.SearchModules;

@@ -5,6 +5,7 @@ using PressGatherer.References.TransportModels.SearchModules;
 using PressGatherer.References.Exceptions;
 using System;
 using System.Threading.Tasks;
+using MongoDB.Bson;
 
 namespace PressGatherer.Test.BusinessLogic
 {
