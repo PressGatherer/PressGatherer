@@ -15,7 +15,7 @@ namespace PressGatherer.Test.DataAccess
         public async Task AddUserToSearchGroup_Successful()
         {
             string searchGroupId = await GetSearchGroupId();
-            string userId = ObjectId.GenerateNewId().ToString();
+            string userId = await PGAccessForTest.GetFirstUserId();
             var model = new AddUserToSearchGroupTransportRequestModel(searchGroupId,userId);
             var result = await PGAccess.AddUserToSearchGroup(model);
             Assert.IsTrue(result.Success);
