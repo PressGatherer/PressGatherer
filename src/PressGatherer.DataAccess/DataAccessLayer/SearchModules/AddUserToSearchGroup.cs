@@ -28,16 +28,15 @@ namespace PressGatherer.DataAccess.DataAccessLayer
 
             if (!group.Users.Any(x => x.UserId == model.UserId))
             {
-                var user = new SearchGroupAccess
+                var userToAdd = new SearchGroupAccess
                 {
                     UserId = model.UserId,
                     AccessType = UserAccessTypeEnum.View
                 };
 
-                group.Users.Append(user);
-                group.LastChangedDate = DateTime.UtcNow;
-
-                await db.SearchGroups.ReplaceOneAsync(x => x.Id == new ObjectId(model.GroupId), group);
+                var filter = Builders<SearchGroup>.Filter.Eq(e => e.Id, new ObjectId(model.GroupId));
+                var update = Builders<SearchGroup>.Update.Push<SearchGroupAccess>(e => e.Users, userToAdd);
+                await db.SearchGroups.FindOneAndUpdateAsync(filter, update);
             }
             else
             {
