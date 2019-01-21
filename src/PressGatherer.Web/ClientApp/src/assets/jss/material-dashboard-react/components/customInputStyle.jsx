@@ -13,7 +13,7 @@ const customInputStyle = {
   },
   underline: {
     "&:hover:not($disabled):before,&:before": {
-      borderColor: "#D2D2D2 !important",
+      borderColor: "#E4D7EA !important",
       borderWidth: "1px !important"
     },
     "&:after": {
@@ -32,7 +32,7 @@ const customInputStyle = {
   },
   labelRoot: {
     ...defaultFont,
-    color: "#AAAAAA !important",
+    color: "#783996 !important",
     fontWeight: "400",
     fontSize: "14px",
     lineHeight: "1.42857"

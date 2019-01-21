@@ -45,7 +45,7 @@ const dashboardStyle = {
     marginBottom: "0"
   },
   cardTitle: {
-    color: "#3C4858",
+      color: "#381549",
     marginTop: "0px",
     minHeight: "auto",
     fontWeight: "300",
@@ -53,7 +53,7 @@ const dashboardStyle = {
     marginBottom: "3px",
     textDecoration: "none",
     "& small": {
-      color: "#777",
+        color: "#783996",
       fontWeight: "400",
       lineHeight: "1"
     }
@@ -67,7 +67,7 @@ const dashboardStyle = {
     marginBottom: "3px",
     textDecoration: "none",
     "& small": {
-      color: "#777",
+        color: "#E4D7EA",
       fontWeight: "400",
       lineHeight: "1"
     }

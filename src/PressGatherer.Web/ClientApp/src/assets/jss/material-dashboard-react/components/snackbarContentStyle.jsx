@@ -30,32 +30,32 @@ const snackbarContentStyle = {
     top: "40px"
   },
   info: {
-    backgroundColor: "#00d3ee",
+      backgroundColor: "#381549",
     color: "#ffffff",
     ...infoBoxShadow
   },
   success: {
-    backgroundColor: "#5cb860",
+      backgroundColor: "#4BE299",
     color: "#ffffff",
     ...successBoxShadow
   },
   warning: {
-    backgroundColor: "#ffa21a",
+      backgroundColor: "#C9B638",
     color: "#ffffff",
     ...warningBoxShadow
   },
   danger: {
-    backgroundColor: "#f55a4e",
+      backgroundColor: "#C9388E",
     color: "#ffffff",
     ...dangerBoxShadow
   },
   primary: {
-    backgroundColor: "#af2cc5",
+      backgroundColor: "#783996",
     color: "#ffffff",
     ...primaryBoxShadow
   },
   rose: {
-    backgroundColor: "#eb3573",
+      backgroundColor: "#1C6340",
     color: "#ffffff",
     ...roseBoxShadow
   },
@@ -83,22 +83,22 @@ const snackbarContentStyle = {
     height: "30px"
   },
   infoIcon: {
-    color: "#00d3ee"
+      color: "#381549"
   },
   successIcon: {
-    color: "#5cb860"
+      color: "#4BE299"
   },
   warningIcon: {
-    color: "#ffa21a"
+      color: "#C9B638"
   },
   dangerIcon: {
-    color: "#f55a4e"
+      color: "#C9388E"
   },
   primaryIcon: {
-    color: "#af2cc5"
+      color: "#783996"
   },
   roseIcon: {
-    color: "#eb3573"
+      color: "#1C6340"
   },
   iconMessage: {
     paddingLeft: "50px",

@@ -1,18 +1,4 @@
-/*!
 
- =========================================================
- * Material Dashboard React - v1.5.0 based on Material Dashboard - v1.2.0
- =========================================================
-
- * Product Page: http://www.creative-tim.com/product/material-dashboard-react
- * Copyright 2018 Creative Tim (http://www.creative-tim.com)
- * Licensed under MIT (https://github.com/creativetimofficial/material-dashboard-react/blob/master/LICENSE.md)
-
- =========================================================
-
- * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
- */
 
 // ##############################
 // // // Variables - Styles that are used on more than one component
@@ -53,61 +39,61 @@ const defaultFont = {
   lineHeight: "1.5em"
 };
 
-const primaryColor = "#9c27b0";
-const warningColor = "#ff9800";
-const dangerColor = "#f44336";
-const successColor = "#4caf50";
-const infoColor = "#00acc1";
-const roseColor = "#e91e63";
-const grayColor = "#999999";
+const primaryColor = "#783996";
+const warningColor = "#C9B638";
+const dangerColor = "#C9388E";
+const successColor = "#4BE299";
+const infoColor = "#381549";
+const roseColor = "#1C6340";
+const grayColor = "#E4D7EA";
 
 const primaryBoxShadow = {
   boxShadow:
-    "0 12px 20px -10px rgba(156, 39, 176, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(156, 39, 176, 0.2)"
+    "0 12px 20px -10px rgba(120, 57, 150, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(120, 57, 150, 0.2)"
 };
 const infoBoxShadow = {
   boxShadow:
-    "0 12px 20px -10px rgba(0, 188, 212, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(0, 188, 212, 0.2)"
+    "0 12px 20px -10px rgba(120, 57, 150, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(120, 57, 150, 0.2)"
 };
 const successBoxShadow = {
   boxShadow:
-    "0 12px 20px -10px rgba(76, 175, 80, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(76, 175, 80, 0.2)"
+    "0 12px 20px -10px rgba(120, 57, 150, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(120, 57, 150, 0.2)"
 };
 const warningBoxShadow = {
   boxShadow:
-    "0 12px 20px -10px rgba(255, 152, 0, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(255, 152, 0, 0.2)"
+    "0 12px 20px -10px rgba(120, 57, 150, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(120, 57, 150, 0.2)"
 };
 const dangerBoxShadow = {
   boxShadow:
-    "0 12px 20px -10px rgba(244, 67, 54, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(244, 67, 54, 0.2)"
+    "0 12px 20px -10px rgba(120, 57, 150, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(120, 57, 150, 0.2)"
 };
 const roseBoxShadow = {
   boxShadow:
-    "0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(233, 30, 99, 0.4)"
+    "0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(120, 57, 150, 0.4)"
 };
 
 const warningCardHeader = {
-  background: "linear-gradient(60deg, #ffa726, #fb8c00)",
+    background: "linear-gradient(60deg, #C9B638, #D9C648)",
   ...warningBoxShadow
 };
 const successCardHeader = {
-  background: "linear-gradient(60deg, #66bb6a, #43a047)",
+    background: "linear-gradient(60deg, #4BE299, #3BD289)",
   ...successBoxShadow
 };
 const dangerCardHeader = {
-  background: "linear-gradient(60deg, #ef5350, #e53935)",
+    background: "linear-gradient(60deg, #C9388E, #D9489E)",
   ...dangerBoxShadow
 };
 const infoCardHeader = {
-  background: "linear-gradient(60deg, #26c6da, #00acc1)",
+    background: "linear-gradient(60deg, #381549, #482559)",
   ...infoBoxShadow
 };
 const primaryCardHeader = {
-  background: "linear-gradient(60deg, #ab47bc, #8e24aa)",
+    background: "linear-gradient(60deg, #783996, #8849A6)",
   ...primaryBoxShadow
 };
 const roseCardHeader = {
-  background: "linear-gradient(60deg, #ec407a, #d81b60)",
+    background: "linear-gradient(60deg, #1C6340, #2C7350)",
   ...roseBoxShadow
 };
 
