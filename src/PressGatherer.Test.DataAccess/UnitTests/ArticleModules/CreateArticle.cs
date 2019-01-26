@@ -13,7 +13,7 @@ namespace PressGatherer.Test.DataAccess
         [TestMethod]
         public async Task CreateArticle_Successful()
         {
-            var model = new CreateArticleTransportRequestModel("Title", "Description", "http://test.com/" + DateTime.UtcNow.ToBinary().ToString(), "Content", "hu-HU");
+            var model = new CreateArticleTransportRequestModel("Title", "Description", "http://test.com/" + DateTime.UtcNow.ToBinary().ToString(), "", "Content", "HtmlContent", "hu-HU");
             var result = await PGAccess.CreateArticle(model);
             Assert.AreNotEqual("", result.ArticleId);
         }
@@ -23,7 +23,7 @@ namespace PressGatherer.Test.DataAccess
         {
             try
             {
-                var model = new CreateArticleTransportRequestModel("", "Description", "http://test.com/" + DateTime.UtcNow.ToBinary().ToString(), "Content", "hu-HU");
+                var model = new CreateArticleTransportRequestModel("", "Description", "http://test.com/" + DateTime.UtcNow.ToBinary().ToString(), "", "Content", "HtmlContent", "hu-HU");
                 var result = await PGAccess.CreateArticle(model);
                 Assert.Fail();
             }
@@ -39,7 +39,7 @@ namespace PressGatherer.Test.DataAccess
         {
             try
             {
-                var model = new CreateArticleTransportRequestModel("Title", "Description", "", "Content", "hu-HU");
+                var model = new CreateArticleTransportRequestModel("Title", "Description", "", "", "Content", "HtmlContent", "hu-HU");
                 var result = await PGAccess.CreateArticle(model);
                 Assert.Fail();
             }

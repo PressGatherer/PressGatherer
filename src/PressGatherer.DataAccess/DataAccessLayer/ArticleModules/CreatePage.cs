@@ -24,7 +24,9 @@ namespace PressGatherer.DataAccess.DataAccessLayer
                     BaseLink = model.BaseLink,
                     Name = model.Name,
                     RssLink = model.RssLink,
-                    SearchLink = model.SearchLink
+                    SearchLink = model.SearchLink,
+                    LastScanDate = DateTime.MinValue,
+                    OnLoad = false
                 };
 
                 await db.Pages.InsertOneAsync(page);

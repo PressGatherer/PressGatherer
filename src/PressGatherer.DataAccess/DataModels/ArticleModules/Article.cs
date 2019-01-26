@@ -24,8 +24,14 @@ namespace PressGatherer.DataAccess
         [BsonElement("pictures")]
         public IEnumerable<ArticlePicture> Pictures { get; set; }
 
+        [BsonElement("category")]
+        public string Category { get; set; }
+
         [BsonElement("content")]
         public string Content { get; set; }
+
+        [BsonElement("htmlContent")]
+        public string HtmlContent { get; set; }
 
         [BsonElement("culture")]
         public string Culture { get; set; }

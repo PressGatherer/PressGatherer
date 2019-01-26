@@ -26,5 +26,11 @@ namespace PressGatherer.DataAccess
 
         [BsonElement("addedDate")]
         public DateTime AddedDate { get; set; }
+
+        [BsonElement("lastScanDate")]
+        public DateTime LastScanDate { get; set; }
+
+        [BsonElement("onLoad")]
+        public bool OnLoad { get; set; }
     }
 }
