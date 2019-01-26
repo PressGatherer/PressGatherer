@@ -46,21 +46,29 @@ namespace PressGatherer.Services
                 else
                     this.GetSearchPageContent(pageData.SearchLink);
 
+                List<ArticleToLoad> articles = new List<ArticleToLoad>();
+
                 if (!String.IsNullOrEmpty(this.RssContent.Content))
                 {
-                    List<ArticleToLoad> articles = ParseRssFile();
-                    foreach (var a in articles)
+                    articles = ParseRssFile();
+                }
+                else
+                {
+                    articles = ParseSearchPage();
+                }
+
+                foreach (var a in articles)
+                {
+                    if (!await ArticleDriver.CheckArticle(this.PageId, a.Link))
                     {
-                        if (!await ArticleDriver.CheckArticle(this.PageId, a.Link))
-                        {
-                            var article = LoadFullArticle(a);
-                            article = LoadMetaFromArticle(article);
-                            article = LoadContentFromArticle(article);
-                            CreateArticleTransportRequestModel request = new CreateArticleTransportRequestModel(article.Title,article.Description,article.Link,article.Category, article.Content, article.HtmlContent, article.Culture, article.ImageLink);
-                            await ArticleDriver.CreateArticle(request);
-                        }
+                        var article = LoadFullArticle(a);
+                        article = LoadMetaFromArticle(article);
+                        article = LoadContentFromArticle(article);
+                        CreateArticleTransportRequestModel request = new CreateArticleTransportRequestModel(article.Title, article.Description, article.Link, article.Category, article.Content, article.HtmlContent, article.Culture, article.ImageLink);
+                        await ArticleDriver.CreateArticle(request);
                     }
                 }
+
                 await SetLastScan();
                 await OnLoadSetToFalse();
             }
@@ -87,10 +95,10 @@ namespace PressGatherer.Services
             this.RssContent = new Rss(client.DownloadString(rssLink));
         }
 
-        public void GetSearchPageContent(string rssLink)
+        public void GetSearchPageContent(string searchPageLink)
         {
             WebClient client = new WebClient();
-            this.SearchPageContent = new SearchPage(client.DownloadString(rssLink));
+            this.SearchPageContent = new SearchPage(client.DownloadString(searchPageLink));
         }
 
         public List<ArticleToLoad> ParseRssFile()
@@ -123,6 +131,13 @@ namespace PressGatherer.Services
                 ArticleToLoad article = new ArticleToLoad(this.PageId, link, title, description, category, pubDateAsDateTime);
                 response.Add(article);
             }
+
+            return response;
+        }
+
+        public List<ArticleToLoad> ParseSearchPage()
+        {
+            List<ArticleToLoad> response = new List<ArticleToLoad>();
 
             return response;
         }
