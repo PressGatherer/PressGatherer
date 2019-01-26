@@ -20,3 +20,4 @@ namespace PressGatherer.References.TransportModels.ArticleModules
 
     }
 }
+
