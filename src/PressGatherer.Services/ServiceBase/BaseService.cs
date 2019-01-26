@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml;
 using HtmlAgilityPack;
@@ -30,7 +31,7 @@ namespace PressGatherer.Services
             SearchPageContent = new SearchPage();
         }
 
-        public async Task LoadNews ()
+        public virtual async Task LoadNews ()
         {
             if (String.IsNullOrWhiteSpace(this.PageId))
                 throw new MissingPageException();
@@ -89,19 +90,19 @@ namespace PressGatherer.Services
             await ArticleDriver.SetLastScan(this.PageId);
         }
 
-        public void GetRssContent (string rssLink)
+        public virtual void GetRssContent (string rssLink)
         {
             WebClient client = new WebClient();
             this.RssContent = new Rss(client.DownloadString(rssLink));
         }
 
-        public void GetSearchPageContent(string searchPageLink)
+        public virtual void GetSearchPageContent(string searchPageLink)
         {
             WebClient client = new WebClient();
             this.SearchPageContent = new SearchPage(client.DownloadString(searchPageLink));
         }
 
-        public List<ArticleToLoad> ParseRssFile()
+        public virtual List<ArticleToLoad> ParseRssFile()
         {
             List<ArticleToLoad> response = new List<ArticleToLoad>();
             XmlDocument rssXmlDoc = new XmlDocument();
@@ -135,21 +136,21 @@ namespace PressGatherer.Services
             return response;
         }
 
-        public List<ArticleToLoad> ParseSearchPage()
+        public virtual List<ArticleToLoad> ParseSearchPage()
         {
             List<ArticleToLoad> response = new List<ArticleToLoad>();
 
             return response;
         }
 
-        public ArticleToLoad LoadFullArticle (ArticleToLoad article)
+        public virtual ArticleToLoad LoadFullArticle (ArticleToLoad article)
         {
             WebClient client = new WebClient();
             article.HtmlContent = client.DownloadString(article.Link);
             return article;
         }
 
-        public ArticleToLoad LoadMetaFromArticle(ArticleToLoad article)
+        public virtual ArticleToLoad LoadMetaFromArticle(ArticleToLoad article)
         {
             var doc = new HtmlDocument();
             doc.LoadHtml(article.HtmlContent);
@@ -167,9 +168,19 @@ namespace PressGatherer.Services
             return article;
         }
 
-        public ArticleToLoad LoadContentFromArticle(ArticleToLoad article)
+        public virtual ArticleToLoad LoadContentFromArticle(ArticleToLoad article)
         {
             return article;
+        }
+
+        public virtual string StripHTML(string input)
+        {
+            return Regex.Replace(input, "<.*?>", String.Empty);
+        }
+
+        public virtual string RemoveEmptyLines(string lines)
+        {
+            return Regex.Replace(lines, @"^\s*$\n|\r", string.Empty, RegexOptions.Multiline).TrimEnd();
         }
     }
 }
