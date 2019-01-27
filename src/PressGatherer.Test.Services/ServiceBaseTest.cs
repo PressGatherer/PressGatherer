@@ -22,5 +22,19 @@ namespace PressGatherer.Test.Services
                 Assert.Fail();
             }
         }
+
+        [TestMethod]
+        public async Task LoadNews_Success_KurucInfo()
+        {
+            try
+            {
+                KurucInfoService service = new KurucInfoService();
+                await service.LoadNews();
+            }
+            catch
+            {
+                Assert.Fail();
+            }
+        }
     }
 }
