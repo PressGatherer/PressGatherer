@@ -14,9 +14,9 @@ using PressGatherer.Services.ServiceEntities;
 
 namespace PressGatherer.Services
 {
-    public class HvgService : BaseService
+    public class Hu24Service : BaseService
     {
-        public HvgService() : base("5c5ad6873206f7235c0397f0")
+        public Hu24Service() : base("5c5adfd43206f7235c0397f1")
         {}
 
         public override ArticleToLoad LoadContentFromArticle(ArticleToLoad article)
@@ -31,10 +31,9 @@ namespace PressGatherer.Services
 
             foreach (var node in divsWithClass)
             {
-                if (node.GetAttributeValue("class", "") == "article-content entry-content")
+                if (node.GetAttributeValue("class", "") == "post-body")
                 {
                     document.LoadHtml(node.InnerHtml);
-
                     innerHtmlContent = document.DocumentNode.InnerHtml;
                     break;
                 }

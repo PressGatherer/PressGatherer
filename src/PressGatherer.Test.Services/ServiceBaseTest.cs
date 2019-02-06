@@ -24,6 +24,8 @@ namespace PressGatherer.Test.Services
                 await service.OnLoadSetToFalse();
                 service = new HvgService();
                 await service.OnLoadSetToFalse();
+                service = new Hu24Service();
+                await service.OnLoadSetToFalse();
             }
             catch
             {
@@ -93,6 +95,20 @@ namespace PressGatherer.Test.Services
             try
             {
                 HvgService service = new HvgService();
+                await service.LoadNews();
+            }
+            catch
+            {
+                Assert.Fail();
+            }
+        }
+
+        [TestMethod]
+        public async Task LoadNews_Success_Hu24()
+        {
+            try
+            {
+                Hu24Service service = new Hu24Service();
                 await service.LoadNews();
             }
             catch
