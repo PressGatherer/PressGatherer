@@ -36,5 +36,19 @@ namespace PressGatherer.Test.Services
                 Assert.Fail();
             }
         }
+
+        [TestMethod]
+        public async Task LoadNews_Success_NSO()
+        {
+            try
+            {
+                NsoService service = new NsoService();
+                await service.LoadNews();
+            }
+            catch
+            {
+                Assert.Fail();
+            }
+        }
     }
 }
