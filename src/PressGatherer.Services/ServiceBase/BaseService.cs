@@ -190,9 +190,15 @@ namespace PressGatherer.Services
 
         public virtual string RemoveEmptyLines(string lines)
         {
-            string text = Regex.Replace(lines, @"^\s*$\n|\r", string.Empty, RegexOptions.Multiline).TrimEnd();
-            text = text.Replace("\n", "");
-            text = text.Replace("&nbsp;", "");
+            string text = Regex.Replace(lines, @"^\s*$\n|\r", " ", RegexOptions.Multiline).TrimEnd();
+            text = text.Replace("\n", " ");
+            text = text.Replace("&nbsp;", " ");
+            text = text.Replace(".", ". ");
+
+            RegexOptions options = RegexOptions.None;
+            Regex regex = new Regex("[ ]{2,}", options);
+            text = regex.Replace(text, " ");
+
             return text;
         }
     }
