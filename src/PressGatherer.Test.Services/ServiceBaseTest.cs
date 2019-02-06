@@ -50,5 +50,19 @@ namespace PressGatherer.Test.Services
                 Assert.Fail();
             }
         }
+
+        [TestMethod]
+        public async Task LoadNews_Success_Blikk()
+        {
+            try
+            {
+                BlikkService service = new BlikkService();
+                await service.LoadNews();
+            }
+            catch
+            {
+                Assert.Fail();
+            }
+        }
     }
 }
