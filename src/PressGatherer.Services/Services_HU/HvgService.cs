@@ -14,9 +14,9 @@ using PressGatherer.Services.ServiceEntities;
 
 namespace PressGatherer.Services
 {
-    public class IndexService : BaseService
+    public class HvgService : BaseService
     {
-        public IndexService () : base("5c4b9ea7def9de06c81eb8a2")
+        public HvgService() : base("5c5ad6873206f7235c0397f0")
         {}
 
         public override ArticleToLoad LoadContentFromArticle(ArticleToLoad article)
@@ -31,14 +31,10 @@ namespace PressGatherer.Services
 
             foreach (var node in divsWithClass)
             {
-                if (node.GetAttributeValue("class", "") == "cikk-torzs")
+                if (node.GetAttributeValue("class", "") == "article-content entry-contents")
                 {
                     document.LoadHtml(node.InnerHtml);
 
-                    document.DocumentNode.Descendants()
-                                    .Where(n => n.Name == "SCRIPT" || n.Name == "STYLE" || n.Name == "script" || n.Name == "style" || n.Name == "#comment")
-                                    .ToList()
-                                    .ForEach(n => n.Remove());
                     innerHtmlContent = document.DocumentNode.InnerHtml;
                     break;
                 }

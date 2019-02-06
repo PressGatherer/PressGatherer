@@ -76,17 +76,17 @@ namespace PressGatherer.Services
             }
         }
 
-        private async Task OnLoadSetToTrue()
+        public async Task OnLoadSetToTrue()
         {
             await ArticleDriver.SetPageOnLoad(this.PageId, true);
         }
 
-        private async Task OnLoadSetToFalse()
+        public async Task OnLoadSetToFalse()
         {
             await ArticleDriver.SetPageOnLoad(this.PageId, false);
         }
 
-        private async Task SetLastScan()
+        public async Task SetLastScan()
         {
             await ArticleDriver.SetLastScan(this.PageId);
         }
@@ -115,6 +115,7 @@ namespace PressGatherer.Services
             {
                 XmlNode rssSubNode = rssNode.SelectSingleNode("link");
                 string link = rssSubNode != null ? HttpUtility.HtmlDecode(rssSubNode.InnerText) : "";
+                link = link.Split('#')[0];
 
                 rssSubNode = rssNode.SelectSingleNode("title");
                 string title = rssSubNode != null ? HttpUtility.HtmlDecode(rssSubNode.InnerText) : "";
