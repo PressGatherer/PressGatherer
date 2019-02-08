@@ -132,5 +132,31 @@ namespace PressGatherer.Test.Services
                 Assert.Fail();
             }
         }
+
+        //[TestMethod]
+        //public async Task TestDataChange()
+        //{
+        //    try
+        //    {
+        //        BaseService service = new IndexService();
+        //        await BusinessLogic.ArticleModules.ArticleDriver.AddArticleContentXPathToPage(service.PageId, "//div[contains(concat(' ', normalize-space(@class), ' '), ' cikk-torzs ')]");
+        //        service = new KurucInfoService();
+        //        await BusinessLogic.ArticleModules.ArticleDriver.AddArticleContentXPathToPage(service.PageId, "//div[contains(concat(' ', normalize-space(@class), ' '), ' cikktext ')]");
+        //        service = new NsoService();
+        //        await BusinessLogic.ArticleModules.ArticleDriver.AddArticleContentXPathToPage(service.PageId, "//div[contains(concat(' ', normalize-space(@class), ' '), ' cikkbody clearfix ')]");
+        //        service = new BlikkService();
+        //        await BusinessLogic.ArticleModules.ArticleDriver.AddArticleContentXPathToPage(service.PageId, "//div[contains(concat(' ', normalize-space(@itemprop), ' '), ' articleBody ')]");
+        //        service = new HvgService();
+        //        await BusinessLogic.ArticleModules.ArticleDriver.AddArticleContentXPathToPage(service.PageId, "//div[contains(concat(' ', normalize-space(@class), ' '), ' article-content entry-content ')]");
+        //        service = new Hu24Service();
+        //        await BusinessLogic.ArticleModules.ArticleDriver.AddArticleContentXPathToPage(service.PageId, "//div[contains(concat(' ', normalize-space(@class), ' '), ' post-body ')]");
+        //        service = new Hu444Service();
+        //        await BusinessLogic.ArticleModules.ArticleDriver.AddArticleContentXPathToPage(service.PageId, "//article");
+        //    }
+        //    catch
+        //    {
+        //        Assert.Fail();
+        //    }
+        //}
     }
 }

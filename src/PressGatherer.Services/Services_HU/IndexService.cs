@@ -18,34 +18,5 @@ namespace PressGatherer.Services
     {
         public IndexService () : base("5c4b9ea7def9de06c81eb8a2")
         {}
-
-        public override ArticleToLoad LoadContentFromArticle(ArticleToLoad article)
-        {
-            var document = new HtmlDocument();
-            string innerHtmlContent = "";
-            document.LoadHtml(article.HtmlContent);
-
-            var divsWithClass = document.DocumentNode.SelectNodes("//div/@class");
-            if (divsWithClass == null)
-                return article;
-
-            foreach (var node in divsWithClass)
-            {
-                if (node.GetAttributeValue("class", "") == "cikk-torzs")
-                {
-                    document.LoadHtml(node.InnerHtml);
-
-                    document.DocumentNode.Descendants()
-                                    .Where(n => n.Name == "SCRIPT" || n.Name == "STYLE" || n.Name == "script" || n.Name == "style" || n.Name == "#comment")
-                                    .ToList()
-                                    .ForEach(n => n.Remove());
-                    innerHtmlContent = document.DocumentNode.InnerHtml;
-                    break;
-                }
-            }
-
-            article.Content = RemoveEmptyLines(StripHTML(innerHtmlContent));
-            return article;
-        }
     }
 }

@@ -9,6 +9,7 @@ namespace PressGatherer.References.TransportModels.ArticleModules
         public string PageId { get; set; }
         public string RssLink { get; set; }
         public string SearchLink { get; set; }
+        public string ArticleContentXPath { get; set; }
         public DateTime LastScan { get; set; }
         public bool OnLoad { get; set; }
 
@@ -17,6 +18,7 @@ namespace PressGatherer.References.TransportModels.ArticleModules
             this.PageId = "";
             this.RssLink = "";
             this.SearchLink = "";
+            this.ArticleContentXPath = "";
             this.LastScan = DateTime.MinValue;
         }
     }

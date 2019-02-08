@@ -27,7 +27,8 @@ namespace PressGatherer.DataAccess.DataAccessLayer
                     RssLink = page.RssLink,
                     SearchLink = page.SearchLink,
                     LastScan = page.LastScanDate,
-                    OnLoad = page.OnLoad,
+                    ArticleContentXPath = page.PageLoadSettings.ArticleContentXPath,
+                    OnLoad = page.OnLoad
                 };
 
                 return response;

@@ -18,31 +18,5 @@ namespace PressGatherer.Services
     {
         public Hu444Service() : base("5c5ae9613206f7235c0397f2")
         {}
-
-        public override ArticleToLoad LoadContentFromArticle(ArticleToLoad article)
-        {
-            var document = new HtmlDocument();
-            string innerHtmlContent = "";
-            document.LoadHtml(article.HtmlContent);
-
-            var divsWithClass = document.DocumentNode.SelectNodes("//article");
-            if (divsWithClass == null)
-                return article;
-
-            foreach (var node in divsWithClass)
-            {
-                document.LoadHtml(node.InnerHtml);
-
-                document.DocumentNode.Descendants()
-                                .Where(n => n.Name == "img" || n.Name == "footer" || n.Name == "SCRIPT" || n.Name == "STYLE" || n.Name == "script" || n.Name == "style" || n.Name == "#comment")
-                                .ToList()
-                                .ForEach(n => n.Remove());
-                innerHtmlContent = document.DocumentNode.InnerHtml;
-                break;
-            }
-
-            article.Content = RemoveEmptyLines(StripHTML(innerHtmlContent));
-            return article;
-        }
     }
 }

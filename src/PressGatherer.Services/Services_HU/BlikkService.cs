@@ -66,27 +66,5 @@ namespace PressGatherer.Services
 
             return response;
         }
-
-        public override ArticleToLoad LoadContentFromArticle(ArticleToLoad article)
-        {
-            var document = new HtmlDocument();
-            string innerHtmlContent = "";
-            document.LoadHtml(article.HtmlContent);
-
-            var divsWithClass = document.DocumentNode.SelectNodes("//div/@itemprop");
-            foreach (var node in divsWithClass)
-            {
-                if (node.GetAttributeValue("itemprop", "") == "articleBody")
-                {
-                    document.LoadHtml(node.InnerHtml);
-                    innerHtmlContent = document.DocumentNode.InnerHtml;
-                    break;
-                }
-            }
-
-            article.Content = RemoveEmptyLines(StripHTML(innerHtmlContent));
-
-            return article;
-        }
     }
 }

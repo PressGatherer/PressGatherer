@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -20,6 +21,7 @@ namespace PressGatherer.Services
         public string PageId { get; set; }
         public Rss RssContent { get; set; }
         public SearchPage SearchPageContent { get; set; }
+        public XPathValues XPathValues { get; set; }
 
         public BaseService()
         {
@@ -38,6 +40,7 @@ namespace PressGatherer.Services
                 throw new MissingPageException();
 
             GetPageForScanResponseModel pageData = await ArticleDriver.GetPageForScan(this.PageId);
+            this.XPathValues = new XPathValues(pageData);
 
             if (!pageData.OnLoad)
             {
@@ -180,6 +183,24 @@ namespace PressGatherer.Services
 
         public virtual ArticleToLoad LoadContentFromArticle(ArticleToLoad article)
         {
+            var document = new HtmlDocument();
+            string innerHtmlContent = "";
+            document.LoadHtml(article.HtmlContent);
+
+            var divsWithClass = document.DocumentNode.SelectNodes(this.XPathValues.ArticleContent);
+            if (divsWithClass == null)
+                return article;
+
+            var node = divsWithClass.First();
+            document.LoadHtml(node.InnerHtml);
+
+            document.DocumentNode.Descendants()
+                            .Where(n => n.Name == "img" || n.Name == "footer" || n.Name == "SCRIPT" || n.Name == "STYLE" || n.Name == "script" || n.Name == "style" || n.Name == "#comment")
+                            .ToList()
+                            .ForEach(n => n.Remove());
+            innerHtmlContent = document.DocumentNode.InnerHtml;
+
+            article.Content = HttpUtility.HtmlDecode(RemoveEmptyLines(StripHTML(innerHtmlContent))).Trim();
             return article;
         }
 

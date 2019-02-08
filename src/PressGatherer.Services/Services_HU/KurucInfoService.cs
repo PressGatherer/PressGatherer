@@ -30,34 +30,5 @@ namespace PressGatherer.Services
 
             return article;
         }
-
-        public override ArticleToLoad LoadContentFromArticle(ArticleToLoad article)
-        {
-            var document = new HtmlDocument();
-
-            string innerHtmlContent = "";   
-            document.LoadHtml(article.HtmlContent);
-
-            var divsWithClass = document.DocumentNode.SelectNodes("//div/@class");
-            foreach (var node in divsWithClass)
-            {
-                if (node.GetAttributeValue("class", "") == "cikktext")
-                {
-                    document.LoadHtml(node.InnerHtml);
-
-                    document.DocumentNode.Descendants()
-                                    .Where(n => n.Name == "SCRIPT" || n.Name == "STYLE" || n.Name == "script" || n.Name == "style" || n.Name == "#comment")
-                                    .ToList()
-                                    .ForEach(n => n.Remove());
-                    innerHtmlContent = document.DocumentNode.InnerHtml;
-                    break;
-                }
-            }
-
-            string content = RemoveEmptyLines(StripHTML(innerHtmlContent));
-
-            article.Content = content;
-            return article;
-        }
     }
 }

@@ -55,27 +55,29 @@ namespace PressGatherer.Services
             document.LoadHtml(article.HtmlContent);
 
             var psWithClass = document.DocumentNode.SelectNodes("//p/@class");
-            foreach (var node in psWithClass)
+            foreach (var pnode in psWithClass)
             {
-                if (node.GetAttributeValue("class", "") == "lead")
+                if (pnode.GetAttributeValue("class", "") == "lead")
                 {
-                    article.Description = node.InnerHtml;
+                    article.Description = pnode.InnerHtml.Trim();
                     break;
                 }
             }
 
-            var divsWithClass = document.DocumentNode.SelectNodes("//div/@class");
-            foreach (var node in divsWithClass)
-            {
-                if (node.GetAttributeValue("class", "") == "cikkbody clearfix")
-                {
-                    document.LoadHtml(node.InnerHtml);
-                    innerHtmlContent = document.DocumentNode.InnerHtml;
-                    break;
-                }
-            }
+            var divsWithClass = document.DocumentNode.SelectNodes(this.XPathValues.ArticleContent);
+            if (divsWithClass == null)
+                return article;
 
-            article.Content = RemoveEmptyLines(StripHTML(innerHtmlContent));
+            var node = divsWithClass.First();
+            document.LoadHtml(node.InnerHtml);
+
+            document.DocumentNode.Descendants()
+                            .Where(n => n.Name == "img" || n.Name == "footer" || n.Name == "SCRIPT" || n.Name == "STYLE" || n.Name == "script" || n.Name == "style" || n.Name == "#comment")
+                            .ToList()
+                            .ForEach(n => n.Remove());
+            innerHtmlContent = document.DocumentNode.InnerHtml;
+
+            article.Content = RemoveEmptyLines(StripHTML(innerHtmlContent)).Trim();
 
             if (article.Content.StartsWith("Hirdetés"))
                 article.Content = article.Content.Substring(8);

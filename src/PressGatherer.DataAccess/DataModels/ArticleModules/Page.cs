@@ -24,6 +24,9 @@ namespace PressGatherer.DataAccess
         [BsonElement("rssLink")]
         public string RssLink { get; set; }
 
+        [BsonElement("pageLoadSettings")]
+        public PageLoadSettings PageLoadSettings { get; set; }
+
         [BsonElement("addedDate")]
         public DateTime AddedDate { get; set; }
 
