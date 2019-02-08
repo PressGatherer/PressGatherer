@@ -28,6 +28,8 @@ namespace PressGatherer.Test.Services
                 await service.OnLoadSetToFalse();
                 service = new Hu444Service();
                 await service.OnLoadSetToFalse();
+                service = new AlfahirService();
+                await service.OnLoadSetToFalse();
             }
             catch
             {
@@ -125,6 +127,20 @@ namespace PressGatherer.Test.Services
             try
             {
                 Hu444Service service = new Hu444Service();
+                await service.LoadNews();
+            }
+            catch
+            {
+                Assert.Fail();
+            }
+        }
+
+        [TestMethod]
+        public async Task LoadNews_Success_Alfahir()
+        {
+            try
+            {
+                AlfahirService service = new AlfahirService();
                 await service.LoadNews();
             }
             catch
