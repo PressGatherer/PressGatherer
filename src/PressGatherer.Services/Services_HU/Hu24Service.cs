@@ -18,29 +18,5 @@ namespace PressGatherer.Services
     {
         public Hu24Service() : base("5c5adfd43206f7235c0397f1")
         {}
-
-        public override ArticleToLoad LoadContentFromArticle(ArticleToLoad article)
-        {
-            var document = new HtmlDocument();
-            string innerHtmlContent = "";
-            document.LoadHtml(article.HtmlContent);
-
-            var divsWithClass = document.DocumentNode.SelectNodes("//div/@class");
-            if (divsWithClass == null)
-                return article;
-
-            foreach (var node in divsWithClass)
-            {
-                if (node.GetAttributeValue("class", "") == "post-body")
-                {
-                    document.LoadHtml(node.InnerHtml);
-                    innerHtmlContent = document.DocumentNode.InnerHtml;
-                    break;
-                }
-            }
-
-            article.Content = RemoveEmptyLines(StripHTML(innerHtmlContent));
-            return article;
-        }
     }
 }
