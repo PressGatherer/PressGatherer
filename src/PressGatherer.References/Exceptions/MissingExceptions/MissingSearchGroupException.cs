@@ -10,5 +10,13 @@ namespace PressGatherer.References.Exceptions
 
         }
 
+        public MissingSearchGroupException(string searchGroup)
+            : base(String.Format("Search group does not exist: {0}", searchGroup))
+        {
+
+        }
+
+
+
     }
 }
