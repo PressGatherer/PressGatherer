@@ -27,18 +27,12 @@ namespace PressGatherer.DataAccess.DataAccessLayer
 
             DbContext db = new DbContext();
 
-            var filter = Builders<SearchGroup>.Filter.Eq(e => e.Id, new ObjectId(model.SearchGroupId));
+            var group = await db.SearchGroups.Find(x => x.Id == new ObjectId(model.SearchGroupId)).SingleAsync();
 
-            if (filter != null)
-            {
-                var update = Builders<SearchGroup>.Update.PullFilter<SearchWord>(p => p.SearchWords, model.Word);
-                await db.SearchGroups.FindOneAndUpdateAsync(filter, update);
-                return true;
-            }
+            group.SearchWords = group.SearchWords.Where(x => x.Word != model.Word);
 
-            return false;
-
-
+            await db.SearchGroups.ReplaceOneAsync(x => x.Id == new ObjectId(model.SearchGroupId), group);
+            return true;
 
         }
     }
