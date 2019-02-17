@@ -9,6 +9,11 @@ namespace PressGatherer.References.Exceptions
         {
 
         }
+        public MissingPageException(string page)
+            : base(String.Format("PageId is missing: {0}", page))
+        {
+
+        }
 
     }
 }
