@@ -10,5 +10,11 @@ namespace PressGatherer.References.Exceptions
 
         }
 
+        public MissingNameAtCreatingPageException(string name)
+            : base(String.Format("Page name is missing: {0}", name))
+        {
+
+        }
+
     }
 }
