@@ -10,5 +10,11 @@ namespace PressGatherer.References.Exceptions
 
         }
 
+        public MissingTitleException(string title)
+            : base(String.Format("Title is missing: {0}", title))
+        {
+
+        }
+
     }
 }
