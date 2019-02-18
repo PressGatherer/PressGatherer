@@ -32,6 +32,24 @@ namespace PressGatherer.Test.Services
                 await service.OnLoadSetToFalse();
                 service = new Hu168OraService();
                 await service.OnLoadSetToFalse();
+                service = new AzonnaliService();
+                await service.OnLoadSetToFalse();
+                service = new MerceService();
+                await service.OnLoadSetToFalse();
+                service = new MnoService();
+                await service.OnLoadSetToFalse();
+                service = new TenyekService();
+                await service.OnLoadSetToFalse();
+                service = new HiradoHuService();
+                await service.OnLoadSetToFalse();
+                service = new PestiSracokService();
+                await service.OnLoadSetToFalse();
+                service = new HircsardaService();
+                await service.OnLoadSetToFalse();
+                service = new Hu888Service();
+                await service.OnLoadSetToFalse();
+                service = new AutoMotorService();
+                await service.OnLoadSetToFalse();
             }
             catch
             {
@@ -157,6 +175,132 @@ namespace PressGatherer.Test.Services
             try
             {
                 Hu168OraService service = new Hu168OraService();
+                await service.LoadNews();
+            }
+            catch
+            {
+                Assert.Fail();
+            }
+        }
+
+        [TestMethod]
+        public async Task LoadNews_Success_Azonnali()
+        {
+            try
+            {
+                AzonnaliService service = new AzonnaliService();
+                await service.LoadNews();
+            }
+            catch
+            {
+                Assert.Fail();
+            }
+        }
+
+        [TestMethod]
+        public async Task LoadNews_Success_Mno()
+        {
+            try
+            {
+                MnoService service = new MnoService();
+                await service.LoadNews();
+            }
+            catch
+            {
+                Assert.Fail();
+            }
+        }
+
+        [TestMethod]
+        public async Task LoadNews_Success_HiradoHu()
+        {
+            try
+            {
+                HiradoHuService service = new HiradoHuService();
+                await service.LoadNews();
+            }
+            catch
+            {
+                Assert.Fail();
+            }
+        }
+
+        [TestMethod]
+        public async Task LoadNews_Success_Tenyek()
+        {
+            try
+            {
+                TenyekService service = new TenyekService();
+                await service.LoadNews();
+            }
+            catch
+            {
+                Assert.Fail();
+            }
+        }
+
+        [TestMethod]
+        public async Task LoadNews_Success_PestiSracok()
+        {
+            try
+            {
+                PestiSracokService service = new PestiSracokService();
+                await service.LoadNews();
+            }
+            catch
+            {
+                Assert.Fail();
+            }
+        }
+
+        [TestMethod]
+        public async Task LoadNews_Success_Merce()
+        {
+            try
+            {
+                MerceService service = new MerceService();
+                await service.LoadNews();
+            }
+            catch
+            {
+                Assert.Fail();
+            }
+        }
+
+        [TestMethod]
+        public async Task LoadNews_Success_AutoMotor()
+        {
+            try
+            {
+                AutoMotorService service = new AutoMotorService();
+                await service.LoadNews();
+            }
+            catch
+            {
+                Assert.Fail();
+            }
+        }
+
+        [TestMethod]
+        public async Task LoadNews_Success_Hu888()
+        {
+            try
+            {
+                Hu888Service service = new Hu888Service();
+                await service.LoadNews();
+            }
+            catch
+            {
+                Assert.Fail();
+            }
+        }
+
+        [TestMethod]
+        public async Task LoadNews_Success_Hircsarda()
+        {
+            try
+            {
+                HircsardaService service = new HircsardaService();
                 await service.LoadNews();
             }
             catch
