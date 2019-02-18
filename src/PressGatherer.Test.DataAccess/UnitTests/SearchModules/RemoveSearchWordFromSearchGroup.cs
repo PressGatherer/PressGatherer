@@ -27,6 +27,41 @@ namespace PressGatherer.Test.DataAccess
 
         }
 
+        [TestMethod]
+        public async Task RemoveSearchWordFromSearchGroup_MissingSearchGroupId()
+        {
+            var addSearchWrodModel = new AddSearchWordToSearchGroupTransportRequestModel("", "test", 0);
+            var searchWordAddedResult = await PGAccess.AddSearchWordToSearchGroup(addSearchWrodModel);
+            try
+            {
+                var removeSearchWord = new RemoveSearchWordFromSearchGroupTransportRequestModel("", addSearchWrodModel.Word);
+                bool result = await PGAccess.RemoveSearchWordFromSearchGroup(removeSearchWord);
+            }
+            catch (MissingSearchGroupException) { }
+            catch
+            {
+                Assert.Fail();
+            }
+        }
+
+        [TestMethod]
+        public async Task RemoveSearchWordFromSearchGroup_MissingSearchWord()
+        {
+
+            string searchGroupId = await GetSearchGroupId();
+
+            try
+            {
+                var removeSearchWord = new RemoveSearchWordFromSearchGroupTransportRequestModel(searchGroupId, "");
+                bool result = await PGAccess.RemoveSearchWordFromSearchGroup(removeSearchWord);
+            }
+            catch (MissingWordException) { }
+            catch
+            {
+                Assert.Fail();
+            }
+        }
+
         public async Task<string> GetSearchGroupId()
         {
             var userid = PGAccessForTest.GetFirstUserId();

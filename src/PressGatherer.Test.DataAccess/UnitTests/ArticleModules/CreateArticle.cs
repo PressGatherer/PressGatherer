@@ -43,7 +43,7 @@ namespace PressGatherer.Test.DataAccess
                 var result = await PGAccess.CreateArticle(model);
                 Assert.Fail();
             }
-            catch (MissingTitleException) { }
+            catch (MissingLinkException) { }
             catch
             {
                 Assert.Fail();

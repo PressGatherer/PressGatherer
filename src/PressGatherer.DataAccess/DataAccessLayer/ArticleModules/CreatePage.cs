@@ -1,6 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using PressGatherer.References.Enums;
+using PressGatherer.References.Exceptions;
 using PressGatherer.References.Logics;
 using PressGatherer.References.TransportModels.ArticleModules;
 using System;
@@ -14,6 +15,12 @@ namespace PressGatherer.DataAccess.DataAccessLayer
     {
         public static async Task<CreatePageTransportResponseModel> CreatePage (CreatePageTransportRequestModel model)
         {
+
+            if (string.IsNullOrWhiteSpace(model.Name))
+            {
+                throw new MissingNameAtCreatingPageException();
+            }
+
             try
             {                
                 DbContext db = new DbContext();

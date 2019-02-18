@@ -10,5 +10,11 @@ namespace PressGatherer.References.Exceptions
 
         }
 
+        public MissingLinkException(string link)
+            : base(String.Format("Link is missing: {0}", link))
+        {
+
+        }
+
     }
 }
