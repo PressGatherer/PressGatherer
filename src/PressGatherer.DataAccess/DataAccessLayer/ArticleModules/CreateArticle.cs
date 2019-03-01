@@ -1,6 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using PressGatherer.References.Enums;
+using PressGatherer.References.Exceptions;
 using PressGatherer.References.Logics;
 using PressGatherer.References.TransportModels.ArticleModules;
 using System;
@@ -15,6 +16,19 @@ namespace PressGatherer.DataAccess.DataAccessLayer
     {
         public static async Task<CreateArticleTransportResponseModel> CreateArticle (CreateArticleTransportRequestModel model)
         {
+
+            if (string.IsNullOrWhiteSpace(model.Link)) 
+            {
+                throw new MissingLinkException();
+            }
+
+
+            if (string.IsNullOrWhiteSpace(model.Title))
+            {
+                throw new MissingTitleException();
+            }
+
+
             try
             {                
                 DbContext db = new DbContext();

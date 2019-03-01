@@ -159,7 +159,15 @@ namespace PressGatherer.Services
         public virtual ArticleToLoad LoadFullArticle (ArticleToLoad article)
         {
             WebClient client = new WebClient();
-            article.HtmlContent = client.DownloadString(article.Link);
+            try
+            {
+                article.HtmlContent = client.DownloadString(article.Link);
+            }
+            catch
+            {
+                article.Link = article.Link.Replace("https", "http");
+                article.HtmlContent = client.DownloadString(article.Link);
+            }
             return article;
         }
 

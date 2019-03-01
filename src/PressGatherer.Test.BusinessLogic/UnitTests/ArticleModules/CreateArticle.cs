@@ -43,7 +43,7 @@ namespace PressGatherer.Test.BusinessLogic
                 var result = await ArticleDriver.CreateArticle(model);
                 Assert.Fail();
             }
-            catch (MissingTitleException) { }
+            catch (MissingLinkException) { }
             catch
             {
                 Assert.Fail();
